@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="#{home.title}">Home</title>
+</head>
+<body>
+<div class="center jumbotron">
+  <h1 th:text="#{home.welcome}">Home</h1>
+  <h2>
+    This is the home page for the
+    <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html" target="_blank">Spring MVC Tutorial</a> sample application.
+  </h2>
+  <a th:href="@{/signup}" th:text="#{home.signup}" class="btn btn-lg btn-primary">Sign up now!</a>
+</div>
+</body>
+</html>

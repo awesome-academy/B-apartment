@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="#{contact.title}">Contact</title>
+</head>
+<body>
+<h1 th:text="#{contact.title}">Contact</h1>
+<form th:method="get" th:action="@{/contact}">
+  
+  <label th:for="title" th:text="#{information.form.title}">Title</label>
+  <input type="text" th:name="title" class="form-control"/>
+  
+  <label th:for="message" th:text="#{information.form.message}">Message</label>
+  <textarea rows="4" th:name="message" class="form-control"></textarea>
+ 
+  <input type="submit" value="Save" th:attr="value=#{information.form.submit}" class="btn btn-primary"/>		
+</form>
+</body>
+</html>

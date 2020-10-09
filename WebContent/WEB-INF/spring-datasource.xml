@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Configuring the JDBC connection-->
+	<context:property-placeholder location="/WEB-INF/datasource.properties"/>
+    <bean id="dataSourceBean" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    	<property name="driverClassName" value="${jdbc.driverClassName}" />
+      	<property name="url" value="${jdbc.url}" />
+      	<property name="username" value="${jdbc.username}" />
+      	<property name="password" value="${jdbc.password}" />
+    </bean>
+    
+    <!-- Configuring the Hibernate4 Session Factory Bean -->
+   	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+      	<property name="dataSource" ref="dataSourceBean" />
+      	<property name="mappingResources">
+      		<list>
+         		
+         	</list>
+      	</property>
+      	<property name="hibernateProperties">
+         	<props>
+            	<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+            	<prop key="hibernate.show_sql">true</prop>
+         	</props>
+      	</property>
+   	</bean>
+    
+   <bean id="hibernateTemplateBean" class="org.springframework.orm.hibernate5.HibernateTemplate">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+   
+   <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!-- the transactional semantics... -->
+        <tx:attributes>
+            <!-- all methods starting with 'get' are read-only -->
+            <tx:method name="get*" read-only="true"/>
+            <!-- other methods use the default transaction settings (see below) -->
+            <tx:method name="*" rollback-for="Throwable"/>
+        </tx:attributes>
+    </tx:advice>
+    
+    <!-- <aop:config>
+        <aop:pointcut id="serviceOperation" expression="execution(com.spring.sample.service.imp.*.*(..)"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation"/>
+    </aop:config> -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+   
+    <bean id="transactionManager"
+            class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title th:text="#{session.Signup.title}"></title>
+</head>
+<body>
+  <h1 th:text="#{session.Signup.title}"></h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <form th:method="GET" th:action="@{/register}" enctype="utf8">
+    
+	  <label th:for="username" th:text="#{session.Signup.username}"></label>
+      <input type="username" th:name="username" class="form-control" />  
+    
+      <label th:for="email" th:text="#{session.Signup.email}"></label>
+      <input type="email" th:name="email" class="form-control" />
+  
+      <label th:for="password" th:text="#{session.Signup.password}"></label>
+      <input type="password" th:name="password" class="form-control" />
+      
+      <input type="submit" value="Sign up" th:attr="value=#{session.Signup.submit}" class="btn btn-primary"/>	
+    </form>
+  </div>
+</div>
+</body>
+</html>

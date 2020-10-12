@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+  
+<hibernate-mapping>  
+	<class name="b.apartment.entity.Projects" table="projects">  
+    	<id name="id" column="id" type="int"> 
+     		<generator class="native"></generator>  
+    	</id>  
+            
+    	<property name="name" column="name" type="string"></property>
+    	<property name="location" column="location" type="string"></property>
+    	<property name="province" column="province" type="string"></property>
+    	<property name="district" column="district" type="string"></property>
+    	<property name="wards" column="wards" type="string"></property>
+    	<property name="desctiption" column="desctiption" type="string"></property>
+    	<property name="images" column="images" type="string"></property>
+    	
+	    
+	</class>
+	
+	
+            
+</hibernate-mapping>  

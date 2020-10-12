@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+  
+<hibernate-mapping>  
+	<class name="b.apartment.entity.Contracts" table="contracts">  
+    	<id name="id" column="id" type="int"> 
+     		<generator class="native"></generator>  
+    	</id>  
+            
+    	<property name="created_at" column="created_at" type="java.util.Date"></property>
+    	<property name="apartment_id" column="apartment_id" type="int"></property>
+    	<property name="saler_id" column="saler_id" type="int"></property>
+    	<property name="customer_id" column="customer_id" type="int"></property>
+    	<property name="total_money" column="total_money" type="double"></property>
+    	<property name="down_payment" column="down_payment" type="float"></property>
+    	
+	    
+	</class>
+	
+	
+            
+</hibernate-mapping>  

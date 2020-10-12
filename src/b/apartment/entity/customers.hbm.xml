@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+  
+<hibernate-mapping>  
+	<class name="b.apartment.entity.Customers" table="customers">  
+    	<id name="id" column="id" type="int"> 
+     		<generator class="native"></generator>  
+    	</id>  
+            
+    	<property name="name" column="name" type="string"></property>
+    	<property name="email" column="email" type="string"></property>
+    	<property name="phone" column="phone" type="string"></property>
+    	<property name="address" column="address" type="string"></property>
+    	<property name="gender" column="gender" type="int"></property>
+    	<property name="age" column="age" type="int"></property>
+    	
+	    
+	</class>
+	
+	
+            
+</hibernate-mapping>  

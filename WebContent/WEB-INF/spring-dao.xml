@@ -6,5 +6,11 @@
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+    <bean id="userDao"
+		class="b.apartment.dao.imp.UserDAOImp">
+		<property name="hibernateTemplate"
+			ref="hibernateTemplateBean" />
+	</bean>
 
 </beans>

@@ -82,6 +82,22 @@ public class UserServiceImp implements UserService {
 			throw e;
 		}
 	}
+	
+	public UserModel findUser(Integer id) {
+		log.info("Kiem tra nguoi dung trong co so du lieu");
+		try {
+			Users user = userDAO.find(id);
+			UserModel userModel = null;
+			if (user != null) {
+				userModel = new UserModel();
+				BeanUtils.copyProperties(user, userModel);
+			}
+			return userModel;
+		} catch (Exception e) {
+			log.error("Da xay ra loi khi tim chi tiet nguoi dung tu co so du lieu", e);
+			return null;
+		}
+	}
 
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Users user = userDAO.findUserByEmail(email);

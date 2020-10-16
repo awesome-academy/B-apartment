@@ -12,11 +12,11 @@
     	<property name="name" column="name" type="string"></property>
     	<property name="phone" column="phone" type="string"></property>
     	<property name="email" column="email" type="string"></property>
-    	<property name="role" column="role" type="string"></property>
+    	<property name="role" column="role" type="int"></property>
     	<property name="gender" column="gender" type="int"></property>
     	<property name="age" column="age" type="int"></property>
+    	<property name="password" column="password" type="string"></property>
     	
-	    
 	</class>
 	
 	

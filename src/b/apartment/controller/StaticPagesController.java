@@ -50,7 +50,7 @@ public class StaticPagesController {
 		return "home.page";
 	}
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model,
 			@RequestParam(name = "page", required = false) Optional<Integer> page, Authentication authentication) {
 		logger.info("Home Page Requested, locale = " + locale);

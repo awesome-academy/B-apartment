@@ -10,5 +10,7 @@ public interface UserService extends UserDetailsService, PersistentTokenReposito
 	public UserModel addUser(UserModel user) throws Exception;
 	
 	public UserModel findUserByEmail(String email);
+	
+	public UserModel findUser(Integer id);
 
 }

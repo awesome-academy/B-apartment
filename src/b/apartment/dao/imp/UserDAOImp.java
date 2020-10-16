@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import b.apartment.dao.UserDAO;
 import b.apartment.entity.Users;
 import b.apartment.service.imp.UserServiceImp;
+import b.apartment.util.CommonUtil;
 
 
 
@@ -39,6 +40,21 @@ public class UserDAOImp extends GenericDAOImp<Users, Integer> implements UserDAO
 			});
 		} catch (Exception e) {
 			log.error("An error occurred while fetching the user details by email from the database", e);
+			return null;
+		}
+	}
+	
+	public Users findUser(Users user) {
+		log.info("Tim nguoi dung trong co so du lieu");
+		try {
+			List<Users> userList = (List<Users>) getHibernateTemplate().findByExample(user);
+			if(!CommonUtil.isEmpty(userList)) {
+				return userList.get(0);
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			log.error("Da xay ra loi khi tim chi tiet nguoi dung tu co so du lieu", e);
 			return null;
 		}
 	}

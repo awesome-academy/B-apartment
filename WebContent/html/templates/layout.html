@@ -21,6 +21,7 @@
   <link rel="stylesheet" type="text/css" media="all" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" media="all" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
   <link rel="stylesheet" type="text/css" media="all" th:href="@{/resources/css/custom.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
@@ -29,6 +30,118 @@
   <link rel="shortcut icon" th:href="@{/resources/img/favicon.ico}">
 
   <th:block th:replace="${links}" />
+  <style>
+	  *{
+		  margin: 0;
+		  padding: 0;
+		  box-sizing: border-box;
+	  }
+	  
+    .home-page{
+	   
+    }
+	  /*Bat dong san cua ban*/
+	  .home-page .list-apartment-hot{
+		background-color: #f0f2f5;
+	}
+    
+    .home-page .list-apartment-hot .container-box{
+        max-width: 1170px;
+	    margin: 0 auto;
+	    padding: 50px 0px;
+	    display: grid;
+	    grid-template-columns: 1fr 1fr 1fr 1fr;
+	    grid-template-rows: auto;
+	    grid-gap: 10px;
+    }
+    .home-page .list-apartment-hot .container-box .apartment-item{
+	    background-color: #ffffff;
+	    padding-bottom: 15px;
+    }
+    .home-page .list-apartment-hot .container-box .apartment-item img{
+	    width: 100%;
+    }
+	.home-page .list-apartment-hot .container-box .apartment-item .content{
+		padding: 0px 10px;
+	}
+    .home-page .list-apartment-hot .container-box .apartment-item .content h2{
+	    font-size: 16px;
+	    font-weight: bold;
+    }
+    .home-page .list-apartment-hot .container-box .apartment-item .content .price-area{
+	    display: flex;
+	    justify-content: flex-start;
+    }
+    .home-page .list-apartment-hot .container-box .apartment-item .content .price-area span{
+	    font-size: 14px;
+	    font-weight: bold;
+	    margin-right: 50px;
+    }
+	.home-page .list-apartment-hot .container-box .apartment-item .content p.location{
+		font-size: 14px;
+		color: #2c2f36;
+	}
+	.home-page .list-apartment-hot .container-box .apartment-item .content .created-like{
+		display: flex;
+		justify-content: space-between;
+	}
+	.home-page .list-apartment-hot .container-box .apartment-item .content .created-like .like:hover{
+	  cursor: pointer;
+	}
+	
+	/*Bat dong san theo dia diem*/
+	.home-page  .apartment-by-province .container-box{
+		max-width: 1170px;
+		margin: 0 auto;
+	}
+	
+	.home-page  .apartment-by-province .container-box .content{
+		display: flex;
+		height: 370px;
+		justify-content: space-evenly;
+	}
+	.home-page .apartment-by-province .container-box .content .image-big{
+		width: 50%;
+		background-image: url("https://i-english.vnecdn.net/2020/02/11/WEBshutterstock1617845956-1581-8218-4882-1581415325_680x0.jpg");
+		background-repeat: no-repeat;
+		background-size: cover;
+		margin-right: 5px;
+	}
+	.home-page .apartment-by-province .container-box .content .images{
+	    width: 50%;
+	}
+	.home-page .apartment-by-province .container-box .content .images .rows{
+		width: 100%;
+		height: 50%;
+		display: flex;
+	}
+	.home-page .apartment-by-province .container-box .content .images .rows .image1{
+	    width: 50%;
+		background-image: url("https://i-english.vnecdn.net/2020/02/11/WEBshutterstock1617845956-1581-8218-4882-1581415325_680x0.jpg");
+		background-repeat: no-repeat;
+		background-size: cover;
+		margin-right: 5px;
+	}
+	.home-page .apartment-by-province .container-box .content .images .rows .image2{
+	  width: 50%;
+	  background-image: url("https://static1.cafeland.vn/cafelandData/upload/tintuc/thitruong/2020/01/tuan-03/bat-dong-san-ha-noi-1579601895.jpg");
+	  background-repeat: no-repeat;
+	  background-size: cover;
+	}
+	.home-page .apartment-by-province .container-box .content .images .rows .image3{
+	  width: 50%;
+	  background-image: url("https://diaocnamland.com/wp-content/uploads/2020/02/bat-dong-san-binh-duong-2020-se-ra-sao.jpg");
+	  background-repeat: no-repeat;
+	  background-size: cover;
+	  margin-right: 5px;
+	}
+	.home-page .apartment-by-province .container-box .content .images .rows .image4{
+	  width: 50%;
+	  background-image: url("https://batdongsanland.vn/wp-content/uploads/2018/07/bat-dong-san-dong-nai-1.jpg");
+	  background-repeat: no-repeat;
+	  background-size: cover;
+	}
+  </style>
 </head>
 <body>
   <div th:unless="${flash.isEmptyMessage()}" th:each="key : ${flash.getMessage().keySet()}" th:class="'alert alert-'+${flash.getMessage().get(key)}+' alert-dismissible'" role="alert">
@@ -37,12 +150,10 @@
     </button>
     [[#{${key}}]]
   </div>
-  <header th:replace="templates/_header :: copy"></header>     
-  <div class="container">
-    <div th:replace="${content}">
-        <p>Layout content</p>
-    </div>
-    <footer th:replace="templates/_footer :: copy"></footer> 
-  </div>  
+  <header th:replace="templates/_header :: copy"></header>
+  <div th:replace="${content}">
+	  <p>Layout content</p>
+  </div>
+  <footer th:replace="templates/_footer :: copy"></footer>
 </body>
 </html>

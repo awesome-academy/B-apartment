@@ -10,6 +10,11 @@
     <bean id="userService" class="b.apartment.service.imp.UserServiceImp">
 		<qualifier value="userService"/>
     	<property name="userDao" ref="userDao" />
-    </bean> 
+    </bean>
+    
+    <bean id="apartmentService" class="b.apartment.service.imp.ApartmentServiceImp">
+		<qualifier value="apartmentService"/>
+    	<property name="apartmentDao" ref="apartmentDao" />
+    </bean>  
    
 </beans>

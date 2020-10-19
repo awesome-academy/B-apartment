@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="templates/layout :: common_header(~{::title},~{})">
+  <title th:text="#{apartment.index.title}">Apartments</title>
+</head>
+<body>
+  <h2 th:text="#{apartment.index.all}">All Apartments</h2>
+
+  <ul class="apartments">
+    <li th:each="apartment : ${apartments}" th:id="'apartment_'+${apartment.id}">
+      <a th:href="@{'/apartments/'+${apartment.id}}" th:text="${apartment.name}"></a>
+    </li>
+  </ul>
+</body>
+</html>

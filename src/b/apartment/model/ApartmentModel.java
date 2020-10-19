@@ -1,8 +1,8 @@
-package b.apartment.entity;
+package b.apartment.model;
 
-import java.io.Serializable;
+import b.apartment.entity.Apartments;
 
-public class Apartments implements Serializable {
+public class ApartmentModel extends BaseModel {
 	private Integer id;
 	private String name;
 	private Integer floor;
@@ -68,7 +68,18 @@ public class Apartments implements Serializable {
 		this.project_id = project_id;
 	}
 	
-	
-	
+	public static ApartmentModel build(Apartments apartment) {
+		ApartmentModel apartmentModel = new ApartmentModel();
+		apartmentModel.setId(apartment.getId());
+		apartmentModel.setName(apartment.getName());
+		apartmentModel.setFloor(apartment.getFloor());
+		apartmentModel.setBedrooms(apartment.getBedrooms());
+		apartmentModel.setBathrooms(apartment.getBathrooms());
+		apartmentModel.setCost(apartment.getCost());
+		apartmentModel.setArea(apartment.getArea());
+		apartmentModel.setProject_id(apartment.getProject_id());
+		apartmentModel.setUser_id(apartment.getUser_id());
+		return apartmentModel;
+	}
 
 }

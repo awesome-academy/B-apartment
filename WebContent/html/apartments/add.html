@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="templates/layout :: common_header(~{::title},~{})">
+  <title th:text="#{apartment.new.title}">Add Apartment</title>
+</head>
+<body>		
+<h1 th:text="#{apartment.new.title}"></h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3" th:insert="apartments/_form :: form(#{apartment.new.submit},@{/apartments},'POST')"></div>
+</div>
+</body>
+</html>

@@ -29,6 +29,7 @@
       	<property name="mappingResources">
       		<list>
          		<value>b/apartment/entity/users.hbm.xml</value>
+         		<value>b/apartment/entity/apartments.hbm.xml</value>
          	</list>
       	</property>
       	<property name="hibernateProperties">

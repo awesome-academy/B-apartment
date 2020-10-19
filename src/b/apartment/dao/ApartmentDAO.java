@@ -1,0 +1,15 @@
+package b.apartment.dao;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import b.apartment.dao.GenericDAO;
+import b.apartment.entity.Apartments;
+
+public interface ApartmentDAO extends GenericDAO<Apartments, Integer> {
+	
+	public Apartments findApartment(Apartments apartments);
+	
+	public Page<Apartments> paginate(Apartments apartments, Pageable pageable);
+
+}

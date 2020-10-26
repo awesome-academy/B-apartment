@@ -1,9 +1,6 @@
-package b.apartment.entity;
+package b.apartment.model;
 
-import java.io.Serializable;
-import java.util.List;
-
-public class Projects implements Serializable {
+public class ProjectsModel extends BaseModel {
 	private Integer id;
 	private String name;
 	private String location;
@@ -12,15 +9,6 @@ public class Projects implements Serializable {
 	private String wards;
 	private String desctiption;
 	private String images;
-	
-	private List<Apartments> apartments;
-	
-	public List<Apartments> getApartments() {
-		return apartments;
-	}
-	public void setApartments(List<Apartments> apartments) {
-		this.apartments = apartments;
-	}
 	
 	public Integer getId() {
 		return id;
@@ -70,7 +58,5 @@ public class Projects implements Serializable {
 	public void setImages(String images) {
 		this.images = images;
 	}
-	
-	
 
 }

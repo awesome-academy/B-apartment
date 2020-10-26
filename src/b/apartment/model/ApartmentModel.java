@@ -13,6 +13,15 @@ public class ApartmentModel extends BaseModel {
 	private Integer project_id;
 	private Integer user_id;
 	
+	private ProjectsModel project;
+	
+	public ProjectsModel getProject() {
+		return project;
+	}
+	public void setProject(ProjectsModel project) {
+		this.project = project;
+	}
+	
 	public Integer getUser_id() {
 		return user_id;
 	}

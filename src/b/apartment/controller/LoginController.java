@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,7 +32,9 @@ public class LoginController {
 	@Autowired
 	@Qualifier("userService")
 	UserService userService;
-
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@GetMapping(value = "/login")
 	public String add(Locale locale, Model model) {
@@ -46,10 +49,10 @@ public class LoginController {
 		logger.info("login form email: " + email);
 		logger.info("login form password: " + password);
 		UserModel userModel = userService.findUserByEmail(email);
-		if (userModel != null && password.equals(userModel.getPassword())) {
+		if (userModel != null && passwordEncoder.matches(password, userModel.getPassword())) {
 			logger.info("login success");
 			request.getSession().setAttribute("user", userModel);
-			return "redirect: " + request.getContextPath() + "/users";
+			return "redirect: " + request.getContextPath() + "/";
 		} else {
 			model.addAttribute("email", email);
 			return "static_pages/home";

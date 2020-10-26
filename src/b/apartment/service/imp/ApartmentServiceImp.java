@@ -43,6 +43,7 @@ public class ApartmentServiceImp implements ApartmentService {
 			condition.setCost(apartmentModel.getCost());
 			condition.setArea(apartmentModel.getArea());
 			condition.setProject_id(apartmentModel.getProject_id());
+			condition.setUser_id(apartmentModel.getUser_id());
 			Apartments user = apartmentDAO.makePersistent(condition);
 			apartmentModel = new ApartmentModel();
 			BeanUtils.copyProperties(user, apartmentModel);

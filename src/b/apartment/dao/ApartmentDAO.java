@@ -1,5 +1,7 @@
 package b.apartment.dao;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,5 +13,7 @@ public interface ApartmentDAO extends GenericDAO<Apartments, Integer> {
 	public Apartments findApartment(Apartments apartments);
 	
 	public Page<Apartments> paginate(Apartments apartments, Pageable pageable);
+	
+	public List<Apartments> findApartmentByProjectId(int project_id);
 
 }

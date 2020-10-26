@@ -13,6 +13,15 @@ public class Apartments implements Serializable {
 	private Integer project_id;
 	private Integer user_id;
 	
+	private Projects project;
+	
+	public Projects getProject() {
+		return project;
+	}
+	public void setProject(Projects project) {
+		this.project = project;
+	}
+	
 	public Integer getUser_id() {
 		return user_id;
 	}

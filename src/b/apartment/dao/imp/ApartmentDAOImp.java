@@ -21,6 +21,7 @@ import b.apartment.util.SearchQueryTemplate;
 
 
 
+
 @Repository
 public class ApartmentDAOImp extends GenericDAOImp<Apartments, Integer> implements ApartmentDAO {
 	private static Logger log = LoggerFactory.getLogger(UserServiceImp.class);
@@ -55,6 +56,22 @@ public class ApartmentDAOImp extends GenericDAOImp<Apartments, Integer> implemen
 			return paginate(searchQueryTemplate);
 		} catch (Exception e) {
 			log.error("An error occurred while paging the apartment details from the database", e);
+			return null;
+		}
+	}
+	
+	public List<Apartments> findApartmentByProjectId(int project_id) {
+		log.info("Tim can ho theo projectId trong co so du lieu");
+		try {
+			return getHibernateTemplate().execute(new HibernateCallback<List<Apartments>>() {
+				public List<Apartments> doInHibernate(Session session) throws HibernateException {
+					Query<Apartments> query = session.createQuery("FROM Apartments WHERE project_id = :projectId");
+					query.setParameter("projectId", project_id);
+					return query.list();
+				}
+			});
+		} catch (Exception e) {
+			log.error("An error occurred while fetching the apartment details by project_id from the database", e);
 			return null;
 		}
 	}

@@ -4,10 +4,6 @@
 <body>		
 <form th:method="${method}" th:action="${action}" th:object="${apartment}" th:fragment="form (title, action, method)">
   
-  <label th:for="${#ids.next('user_id')}" th:text="#{apartment.form.userid}">User ID</label>
-  <input type="text" th:field="*{user_id}" class="form-control" th:classappend="${#fields.hasErrors('user_id')}? 'fieldError'" />
-  <p th:if="${#fields.hasErrors('user_id')}" th:errors="*{user_id}" class="error">Incorrect user id</p>
-  
   <label th:for="${#ids.next('name')}" th:text="#{apartment.form.name}">Name</label>
   <input type="text" th:field="*{name}" class="form-control" th:classappend="${#fields.hasErrors('name')}? 'fieldError'" />
   <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Incorrect name</p>
@@ -33,7 +29,12 @@
   <p th:if="${#fields.hasErrors('area')}" th:errors="*{area}" class="error">Incorrect area</p>
   
   <label th:for="${#ids.next('project_id')}" th:text="#{apartment.form.project_id}">project_id</label>
-  <input type="text" th:field="*{project_id}" class="form-control" th:classappend="${#fields.hasErrors('project_id')}? 'fieldError'" />
+  <select th:field="*{project_id}">
+  		<option value=""> -- </option>
+        <option th:each="project : ${projects}"
+                th:value="${project.id}"
+               	th:utext="${project.name}"/>
+  </select>
   <p th:if="${#fields.hasErrors('project_id')}" th:errors="*{project_id}" class="error">Incorrect projectId</p>
 
 	<label th:text="#{apartment.form.image}">image</label>

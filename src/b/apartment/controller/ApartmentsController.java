@@ -77,7 +77,7 @@ public class ApartmentsController {
 		
 		if (bindingResult.hasErrors()) {
 			logger.info("Returning register.jsp page, validate failed");
-			return "apartments/index";
+			return "apartments/add";
 		}
 		UserModel userModel = (UserModel) request.getSession().getAttribute("user");
 		apartmentModel.setUser_id(userModel.getId());
@@ -85,7 +85,7 @@ public class ApartmentsController {
 		ApartmentModel apartment = apartmentService.addApartment(apartmentModel);
 		// Add message to flash scope
 		redirectAttributes.addFlashAttribute("css", "success");
-		redirectAttributes.addFlashAttribute("flash", "user.create.success");
+		redirectAttributes.addFlashAttribute("flash", "apartment.create.success");
 		flash.success("apartment.create.success");
 		flash.keep();
 		return "redirect: " + request.getContextPath() + "/";

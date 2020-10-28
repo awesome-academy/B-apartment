@@ -28,7 +28,7 @@
   
   <label th:for="${#ids.next('cost')}" th:text="#{apartment.form.cost}">cost</label>
   <input type="text" th:field="*{cost}" class="form-control" th:classappend="${#fields.hasErrors('cost')}? 'fieldError'" />
-  <p th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}" class="error">Incorrect cost</p>
+  <p th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}" class="error" style="color:red">Incorrect cost</p>
   
   <label th:for="${#ids.next('area')}" th:text="#{apartment.form.area}">area</label>
   <input type="text" th:field="*{area}" class="form-control" th:classappend="${#fields.hasErrors('area')}? 'fieldError'" />

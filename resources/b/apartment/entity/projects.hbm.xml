@@ -17,6 +17,12 @@
     	<property name="desctiption" column="desctiption" type="string"></property>
     	<property name="images" column="images" type="string"></property>
     	
+    	<list name = "apartments" lazy="true" inverse="false" >
+	      <key column = "project_id"/>
+	      <list-index column = "id" base="1" />
+	      <one-to-many class="b.apartment.entity.Apartments"/>
+	    </list>
+    	
 	    
 	</class>
 	

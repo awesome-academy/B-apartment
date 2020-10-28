@@ -18,5 +18,11 @@
 		<property name="hibernateTemplate"
 			ref="hibernateTemplateBean" />
 	</bean>
+	
+	<bean id="projectDao"
+		class="b.apartment.dao.imp.ProjectDAOImp">
+		<property name="hibernateTemplate"
+			ref="hibernateTemplateBean" />
+	</bean>
 
 </beans>

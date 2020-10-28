@@ -29,7 +29,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import b.apartment.controller.RegisterController;
 import b.apartment.interceptor.Flash;
 import b.apartment.model.ApartmentModel;
+import b.apartment.model.ProjectsModel;
 import b.apartment.service.ApartmentService;
+import b.apartment.service.ProjectService;
+import b.apartment.model.UserModel;
 
 @Controller
 @EnableWebMvc
@@ -43,6 +46,10 @@ public class ApartmentsController {
 	@Qualifier("apartmentService")
 	ApartmentService apartmentService;
 
+	@Autowired
+	@Qualifier("projectService")
+	ProjectService projectService;
+	
 	@Resource
 	Flash flash;
 	
@@ -59,23 +66,29 @@ public class ApartmentsController {
 	
 	@GetMapping(value = "/apartments/add")
 	public String add(Locale locale, Model model) {
+		List<ProjectsModel> projects = projectService.findAll();
+        model.addAttribute("projects", projects);
 		return "apartments/add";
 	}
 	
 	@PostMapping(value = "/apartments")
 	public String create(@ModelAttribute("apartment") @Validated ApartmentModel apartmentModel, BindingResult bindingResult,
 			Model model, final RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
+		
 		if (bindingResult.hasErrors()) {
 			logger.info("Returning register.jsp page, validate failed");
 			return "apartments/add";
 		}
+		UserModel userModel = (UserModel) request.getSession().getAttribute("user");
+		apartmentModel.setUser_id(userModel.getId());
+		
 		ApartmentModel apartment = apartmentService.addApartment(apartmentModel);
 		// Add message to flash scope
 		redirectAttributes.addFlashAttribute("css", "success");
-		redirectAttributes.addFlashAttribute("flash", "user.create.success");
+		redirectAttributes.addFlashAttribute("flash", "apartment.create.success");
 		flash.success("apartment.create.success");
 		flash.keep();
-		return "redirect: " + request.getContextPath() + "/apartments/" + apartment.getId();
+		return "redirect: " + request.getContextPath() + "/";
 	}
 	
 	@GetMapping(value = "/apartments")

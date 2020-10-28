@@ -1,17 +1,37 @@
 package b.apartment.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import b.apartment.entity.Apartments;
 
 public class ApartmentModel extends BaseModel {
 	private Integer id;
+	@NotEmpty(message = "{apartment.validation.name.required}")
+	@Size(max = 100, message = "{apartment.validation.name.max}")
 	private String name;
+	@NotNull(message = "{apartment.validation.floor.required}")
 	private Integer floor;
+	@NotNull(message = "{apartment.validation.bedrooms.required}")
 	private Integer bedrooms;
+	@NotNull(message = "{apartment.validation.bathrooms.required}")
 	private Integer bathrooms;
+	@NotNull(message = "{apartment.validation.cost.required}")
 	private Double cost;
+	@NotNull(message = "{apartment.validation.area.required}")
 	private Float area;
+	@NotNull(message = "{apartment.validation.project.required}")
 	private Integer project_id;
 	private Integer user_id;
+	private ProjectsModel project;
+	
+	public ProjectsModel getProject() {
+		return project;
+	}
+	public void setProject(ProjectsModel project) {
+		this.project = project;
+	}
 	
 	public Integer getUser_id() {
 		return user_id;

@@ -16,5 +16,10 @@
 		<qualifier value="apartmentService"/>
     	<property name="apartmentDao" ref="apartmentDao" />
     </bean>  
+    
+    <bean id="projectService" class="b.apartment.service.imp.ProjectServiceImp">
+		<qualifier value="projectService"/>
+    	<property name="projectDao" ref="projectDao" />
+    </bean> 
    
 </beans>

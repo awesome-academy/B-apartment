@@ -12,7 +12,16 @@ public class Apartments implements Serializable {
 	private Float area;
 	private Integer project_id;
 	private Integer user_id;
+	private String description;
 	
+	
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	private Projects project;
 	
 	public Projects getProject() {

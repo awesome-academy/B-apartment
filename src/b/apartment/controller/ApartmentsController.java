@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -77,6 +78,8 @@ public class ApartmentsController {
 		
 		if (bindingResult.hasErrors()) {
 			logger.info("Returning register.jsp page, validate failed");
+			List<ProjectsModel> projects = projectService.findAll();
+	        model.addAttribute("projects", projects);
 			return "apartments/add";
 		}
 		UserModel userModel = (UserModel) request.getSession().getAttribute("user");
@@ -99,5 +102,14 @@ public class ApartmentsController {
 		Page<ApartmentModel> apartments = apartmentService.paginate(apartmentModel);
 		model.addAttribute("apartments", apartments);
 		return "apartments/index";
+	}
+	
+	@GetMapping(value = "/apartments/{id}")
+	public String show(@PathVariable Integer id, Model model, 
+			@RequestParam(name = "page", required = false) Optional<Integer> page,
+			HttpServletRequest request,
+			Authentication authentication) throws Exception {
+		model.addAttribute("apartment", apartmentService.findApartment(id));
+		return "apartments/show";
 	}
 }

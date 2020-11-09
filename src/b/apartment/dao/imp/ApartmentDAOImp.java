@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.orm.hibernate5.HibernateCallback;
@@ -19,9 +18,6 @@ import b.apartment.service.imp.UserServiceImp;
 import b.apartment.util.CommonUtil;
 import b.apartment.util.SearchQueryTemplate;
 
-
-
-
 @Repository
 public class ApartmentDAOImp extends GenericDAOImp<Apartments, Integer> implements ApartmentDAO {
 	private static Logger log = LoggerFactory.getLogger(UserServiceImp.class);
@@ -31,9 +27,9 @@ public class ApartmentDAOImp extends GenericDAOImp<Apartments, Integer> implemen
 	}
 	
 	public Apartments findApartment(Apartments apartments) {
-		log.info("Finding the apartment in the database");
+		log.info("Tim can ho trong co so du lieu");
 		try {
-			List<Apartments> apartmentList = (List<Apartments>) getHibernateTemplate().findByExample(apartments);
+			List<Apartments> apartmentList = findAll();
 			if (!CommonUtil.isEmpty(apartmentList)) {
 				return apartmentList.get(0);
 			} else {
@@ -47,7 +43,7 @@ public class ApartmentDAOImp extends GenericDAOImp<Apartments, Integer> implemen
 	
 	@Override
 	public Page<Apartments> paginate(Apartments apartments, Pageable pageable) {
-		log.info("Paging the apartments in the database");
+		log.info("Phan trang cac can ho trong co so du lieu");
 		try {
 			
 			String sql = "FROM Apartments";
@@ -75,4 +71,5 @@ public class ApartmentDAOImp extends GenericDAOImp<Apartments, Integer> implemen
 			return null;
 		}
 	}
+	
 }

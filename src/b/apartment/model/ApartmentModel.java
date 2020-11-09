@@ -24,6 +24,18 @@ public class ApartmentModel extends BaseModel {
 	@NotNull(message = "{apartment.validation.project.required}")
 	private Integer project_id;
 	private Integer user_id;
+	@NotEmpty(message = "{apartment.validation.description.required}")
+	private String description;
+	
+	
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	private ProjectsModel project;
 	
 	public ProjectsModel getProject() {

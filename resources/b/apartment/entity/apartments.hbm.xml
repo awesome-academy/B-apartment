@@ -17,6 +17,7 @@
     	<property name="area" column="area" type="float"></property>
     	<property name="project_id" column="project_id" type="int"></property>
     	<property name="user_id" column="user_id" type="int"></property>
+    	<property name="description" column="description" type="string" length="5000"></property>
     	
     	<many-to-one name="project" class="b.apartment.entity.Projects"
       		column="project_id" not-null="true" insert="false" update="false"/>

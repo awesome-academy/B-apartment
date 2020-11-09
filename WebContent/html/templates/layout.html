@@ -7,6 +7,7 @@
   <title th:replace="${title}">[[#{meta.title}]]</title>
   <meta name="description" th:attr="content=#{meta.description}" />
   <meta name="keywords" th:attr="content=#{meta.keywords}" />
+  <meta charset="utf-8"/>
   <!-- <sec:csrfMetaTags ></sec:csrfMetaTags> -->
 	<!-- default header name is X-CSRF-TOKEN -->
   <th:block th:if="${_csrf}">
@@ -18,16 +19,18 @@
   <!-- Common styles and scripts -->
   <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap.min.css}">
   <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap-theme.min.css}">
-  <link rel="stylesheet" type="text/css" media="all" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" media="all" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
+  <!-- <link rel="stylesheet" type="text/css" media="all" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" media="all" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"> -->
   <link rel="stylesheet" type="text/css" media="all" th:href="@{/resources/css/custom.css}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-  <script src="@{/webjars/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+  
+  <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
   <script type="text/javascript" th:src="@{/resources/js/custom.js}"></script>
   <link rel="shortcut icon" th:href="@{/resources/img/favicon.ico}">
+  <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 
   <th:block th:replace="${links}" />
   <style>

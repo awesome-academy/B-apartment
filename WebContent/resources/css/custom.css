@@ -426,4 +426,13 @@ span.picture {
   input {
     border: 0;
   }
+  
+.slide-apartment{
+	 font-size:10px
+	 color:blue;
+}
+
+.description{
+	color:green;
+}
 }

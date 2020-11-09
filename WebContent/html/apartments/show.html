@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="#{apartment.show.title}">Apartment Info</title>
+</head>
+<body>
+	<div class="slide-apartment" tabindex="0">
+		<div>
+			<img src="https://file4.batdongsan.com.vn/2020/11/06/20201106161550-20de_wm.jpg" height="400" width="700">
+		</div>
+		<div class="description" id="product-detail-web" uid="233197">
+		<h1>
+			<span th:text="${apartment.name}">Name</span>
+		</h1>
+			<div class="divide">&nbsp;</div>
+			<div class="short-detail-wrap">
+				<ul class="short-detail-2 clearfix pad-16">
+					<li>
+						<span class="sp1">Muc Gia: </span>
+						<span th:text="${apartment.cost}">Cost</span>
+					</li>
+					<li>
+						<span class="sp1">Khu Vuc: </span>
+						<span th:text="${apartment.area}">Area</span>
+					</li>
+					<li>
+						<span class="sp1">Phong Ngu:</span>
+						<span th:text="${apartment.bedrooms}">Bedrooms</span>
+					</li>
+					<li>
+						<span class="sp1">Phong tam: </span>
+						<span th:text="${apartment.bathrooms}">Bathrooms</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="divide">&nbsp;</div>
+		<div class="detail-product">
+			<div class="detail-1 pad-bot-16">
+				<span class="title-detail">Du An</span>
+				<p>
+					<span th:text="${apartment.project.name}">Project</span>
+				</p>
+			</div>
+			<div class="detail-1 pad-bot-16">
+				<span class="title-detail">Thong tin mo ta</span>
+				<p>
+					<span th:utext="${apartment.description}">Description</span>
+				</p>
+			</div>
+		</div>
+	</div>
+</body>

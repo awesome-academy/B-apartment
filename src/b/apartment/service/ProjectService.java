@@ -7,5 +7,5 @@ import b.apartment.model.ProjectsModel;
 public interface ProjectService {
 	
 	public List<ProjectsModel> findAll();
-
+	
 }

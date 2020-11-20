@@ -13,7 +13,8 @@ public class Apartments implements Serializable {
 	private Integer project_id;
 	private Integer user_id;
 	private String description;
-	
+	private String image;
+
 	
 	
 	public String getDescription() {
@@ -84,6 +85,12 @@ public class Apartments implements Serializable {
 	}
 	public void setProject_id(Integer project_id) {
 		this.project_id = project_id;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	

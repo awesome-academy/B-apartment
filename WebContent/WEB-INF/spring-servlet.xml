@@ -58,6 +58,7 @@
 	
 	<!-- resources -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/images/**" location="file://${file.upload-dir}" />
 	<mvc:resources mapping="/webjars/**" location="/webjars/" />
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -98,6 +99,9 @@
 	
 	<bean name="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 
+	<bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10000000"/>
+	</bean>
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory org.springframework.web.servlet.view.UrlBasedViewResolver-->
 	<!-- <bean id="viewResolver"
@@ -176,6 +180,12 @@
 	  <!-- ypes, so this flag is "false" by default for safer backwards            -->
 	  <!-- compatibility.                                                          -->
 	  <property name="enableSpringELCompiler" value="true" />
+	  <property name="additionalDialects">
+	    <set>
+	      <!-- Note the package would change to 'springsecurity[3|4]' if you are using that version -->
+	      <bean  class="b.apartment.util.ViewSupportDialect"/>
+	    </set>
+	  </property>
 	</bean>
     
     <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">

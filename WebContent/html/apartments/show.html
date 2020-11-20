@@ -6,7 +6,7 @@
 <body>
 	<div class="slide-apartment" tabindex="0">
 		<div>
-			<img src="https://file4.batdongsan.com.vn/2020/11/06/20201106161550-20de_wm.jpg" height="400" width="700">
+			<img th:if="${apartment.attached}" th:src="${#viewSupport.getImageUrl(apartment.image)}" width="700" height="1000"/>
 		</div>
 		<div class="description" id="product-detail-web" uid="233197">
 		<h1>

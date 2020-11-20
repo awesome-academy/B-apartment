@@ -8,7 +8,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
   '
-  <form th:method="POST" th:action="@{/apartments}" th:object="${apartment}" >
+  <form th:method="POST" th:action="@{/apartments}" th:object="${apartment}" enctype="multipart/form-data">
   
   <label th:for="${#ids.next('name')}" th:text="#{apartment.form.name}">Name</label>
   <input type="text" th:field="*{name}" class="form-control" th:classappend="${#fields.hasErrors('name')}? 'fieldError'" />
@@ -50,6 +50,14 @@
            CKEDITOR.replace( 'editor1' );
  
        </script> 
+       
+    <div class="field">
+	  <input type="file" th:field="*{picture}" id="file"/>
+	</div>
+	
+	<span class="apartment">
+        <img th:if="${apartment.attached}" th:src="${#viewSupport.getImageUrl(apartment.image)}" width="500" height="500"/>
+    </span>
 
   <input type="submit" value="Post" th:attr="value=#{apartment.new.title}" class="btn btn-primary"/>
 </form>

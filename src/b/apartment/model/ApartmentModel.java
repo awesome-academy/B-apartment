@@ -4,7 +4,13 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.util.StringUtils;
+
+
 import b.apartment.entity.Apartments;
+import b.apartment.uploader.ImageUpload;
+import b.apartment.uploader.cloudinary.CloudinaryImageUpload;
 
 public class ApartmentModel extends BaseModel {
 	private Integer id;
@@ -28,7 +34,23 @@ public class ApartmentModel extends BaseModel {
 	private String description;
 	
 	
+	private MultipartFile picture;
+	private String image;
+
 	
+	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public MultipartFile getPicture() {
+		return picture;
+	}
+	public void setPicture(MultipartFile picture) {
+		this.picture = picture;
+	}
 	public String getDescription() {
 		return description;
 	}
@@ -112,6 +134,22 @@ public class ApartmentModel extends BaseModel {
 		apartmentModel.setProject_id(apartment.getProject_id());
 		apartmentModel.setUser_id(apartment.getUser_id());
 		return apartmentModel;
+	}
+	
+	public boolean isAttached() {
+		return StringUtils.hasText(image);
+	}
+
+	public ImageUpload getUpload() {
+		ImageUpload file = new CloudinaryImageUpload();
+		if (StringUtils.hasText(image)) {
+			file.setStoredPath(image);
+		}
+		return file;
+	}
+
+	public void setUpload(ImageUpload file) {
+		this.image = file.getStoredPath();
 	}
 
 }

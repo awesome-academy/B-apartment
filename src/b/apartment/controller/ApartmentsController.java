@@ -33,6 +33,8 @@ import b.apartment.model.ApartmentModel;
 import b.apartment.model.ProjectsModel;
 import b.apartment.service.ApartmentService;
 import b.apartment.service.ProjectService;
+import b.apartment.uploader.ImageUpload;
+import b.apartment.uploader.ImageUploader;
 import b.apartment.model.UserModel;
 
 @Controller
@@ -50,6 +52,10 @@ public class ApartmentsController {
 	@Autowired
 	@Qualifier("projectService")
 	ProjectService projectService;
+	
+	@Autowired
+	@Qualifier("imageUploader")
+	ImageUploader imageUploader;
 	
 	@Resource
 	Flash flash;
@@ -84,6 +90,11 @@ public class ApartmentsController {
 		}
 		UserModel userModel = (UserModel) request.getSession().getAttribute("user");
 		apartmentModel.setUser_id(userModel.getId());
+		
+		ImageUpload imageUpload = imageUploader.uploadFile(apartmentModel.getPicture());
+		if (imageUpload != null) {
+			apartmentModel.setUpload(imageUpload);
+		}
 		
 		ApartmentModel apartment = apartmentService.addApartment(apartmentModel);
 		// Add message to flash scope

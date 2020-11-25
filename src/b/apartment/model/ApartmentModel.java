@@ -34,7 +34,23 @@ public class ApartmentModel extends BaseModel {
 	private MultipartFile picture;
 	private String image;
 
-
+	@NotEmpty(message = "{apartment.validation.description.locationX}")
+	private String locationX;
+	@NotEmpty(message = "{apartment.validation.description.locationY}")
+	private String locationY;
+	
+	public String getLocationX() {
+		return locationX;
+	}
+	public void setLocationX(String locationX) {
+		this.locationX = locationX;
+	}
+	public String getLocationY() {
+		return locationY;
+	}
+	public void setLocationY(String locationY) {
+		this.locationY = locationY;
+	}
 
 	public String getImage() {
 		return image;
@@ -153,4 +169,12 @@ public class ApartmentModel extends BaseModel {
 	public void setUpload(ImageUpload file) {
 		this.image = file.getStoredPath();
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
 }

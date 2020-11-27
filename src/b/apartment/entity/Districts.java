@@ -6,7 +6,16 @@ public class Districts implements Serializable {
 	private Integer id;
 	private String name;
 	private String code;
-	
+	private Integer provinceId;
+
+	public Integer getProvinceId() {
+		return provinceId;
+	}
+
+	public void setProvinceId(Integer provinceId) {
+		this.provinceId = provinceId;
+	}
+
 	public Integer getId() {
 		return id;
 	}

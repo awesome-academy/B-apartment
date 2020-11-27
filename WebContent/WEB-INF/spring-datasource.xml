@@ -31,7 +31,9 @@
          		<value>b/apartment/entity/users.hbm.xml</value>
          		<value>b/apartment/entity/apartments.hbm.xml</value>
          		<value>b/apartment/entity/projects.hbm.xml</value>
-         	</list>
+				<value>b/apartment/entity/provinces.hbm.xml</value>
+				<value>b/apartment/entity/districts.hbm.xml</value>
+			</list>
       	</property>
       	<property name="hibernateProperties">
          	<props>

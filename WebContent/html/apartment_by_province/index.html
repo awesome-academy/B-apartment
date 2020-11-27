@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="templates/layout :: common_header(~{::title},~{})">
+	<title th:text="#{apartment.new.title}">Apartments by location</title>
+</head>
+<body>
+	<div class="apartment-by-location-page">
+		<h1>Bat dong san theo dia diem</h1>
+	</div>
+	<div class="home-page">
+		<div class="list-apartment-hot">
+			<div class="container-box">
+				<div class="apartment-item" th:each="apartment : ${apartments}" th:id="'apartment-'+${apartment.id}">
+					<img src="https://file4.batdongsan.com.vn/crop/257x147/2020/09/11/20200911053757-fc0b_wm.jpg">
+					<div class="content">
+						<h2 th:text="${apartment.name}"></h2>
+						<div class="price-area">
+							<span th:text="${apartment.cost}">ty</span>
+							<span th:text="${apartment.area}">m</span>
+						</div>
+						<p class="location">Hoan Kiem</p>
+						<div class="created-like">
+							<span class="created">1 Tuan truoc</span>
+							<span class="like"><i class="fa fa-heart"></i></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

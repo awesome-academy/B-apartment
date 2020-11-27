@@ -25,4 +25,16 @@
 			ref="hibernateTemplateBean" />
 	</bean>
 
+	<bean id="provinceDao"
+		  class="b.apartment.dao.imp.ProvinceDAOImp">
+		<property name="hibernateTemplate"
+				  ref="hibernateTemplateBean" />
+	</bean>
+
+	<bean id="districtDao"
+		  class="b.apartment.dao.imp.DistrictDAOImp">
+		<property name="hibernateTemplate"
+				  ref="hibernateTemplateBean" />
+	</bean>
+
 </beans>

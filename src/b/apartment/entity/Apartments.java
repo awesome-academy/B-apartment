@@ -11,18 +11,11 @@ public class Apartments implements Serializable {
 	private Double cost;
 	private Float area;
 	private Integer project_id;
-	private Integer user_id;
-	private String description;
 	private String image;
 
+	private Integer user_id;
+	private String description;
 	
-	
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
 	private Projects project;
 	
 	public Projects getProject() {
@@ -86,14 +79,19 @@ public class Apartments implements Serializable {
 	public void setProject_id(Integer project_id) {
 		this.project_id = project_id;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public String getImage() {
 		return image;
 	}
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
-	
-	
 
 }

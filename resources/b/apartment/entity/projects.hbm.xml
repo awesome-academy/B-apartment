@@ -11,9 +11,9 @@
             
     	<property name="name" column="name" type="string"></property>
     	<property name="location" column="location" type="string"></property>
-    	<property name="province" column="province" type="string"></property>
-    	<property name="district" column="district" type="string"></property>
-    	<property name="wards" column="wards" type="string"></property>
+    	<property name="province" column="province" type="int"></property>
+    	<property name="district" column="district" type="int"></property>
+    	<property name="wards" column="wards" type="int"></property>
     	<property name="desctiption" column="desctiption" type="string"></property>
     	<property name="images" column="images" type="string"></property>
     	

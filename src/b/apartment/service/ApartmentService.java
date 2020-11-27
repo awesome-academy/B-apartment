@@ -16,4 +16,7 @@ public interface ApartmentService {
 	
 	public Page<ApartmentModel> paginate(ApartmentModel apartmentModel);
 
+	public List<ApartmentModel> apartmentsHot();
+
+	public List<ApartmentModel> apartmentsByProvince(ApartmentModel apartmentModel);
 }

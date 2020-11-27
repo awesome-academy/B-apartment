@@ -2,6 +2,7 @@ package b.apartment.dao.imp;
 
 import java.util.List;
 
+import b.apartment.model.ApartmentModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -21,11 +22,10 @@ import b.apartment.util.SearchQueryTemplate;
 @Repository
 public class ApartmentDAOImp extends GenericDAOImp<Apartments, Integer> implements ApartmentDAO {
 	private static Logger log = LoggerFactory.getLogger(UserServiceImp.class);
-
 	public ApartmentDAOImp() {
 		super(Apartments.class);
 	}
-	
+
 	public Apartments findApartment(Apartments apartments) {
 		log.info("Tim can ho trong co so du lieu");
 		try {
@@ -40,22 +40,36 @@ public class ApartmentDAOImp extends GenericDAOImp<Apartments, Integer> implemen
 			return null;
 		}
 	}
-	
-	@Override
-	public Page<Apartments> paginate(Apartments apartments, Pageable pageable) {
-		log.info("Phan trang cac can ho trong co so du lieu");
+
+	public List<Apartments> apartmentsHot() {
 		try {
-			
-			String sql = "FROM Apartments";
-			String countSql = "SELECT COUNT(*) FROM Apartments";
-			SearchQueryTemplate searchQueryTemplate = new SearchQueryTemplate(sql, countSql, pageable);
-			return paginate(searchQueryTemplate);
+			return getHibernateTemplate().execute(new HibernateCallback<List<Apartments>>() {
+				public List<Apartments> doInHibernate(Session session) throws HibernateException {
+					Query<Apartments> query = session.createQuery("FROM Apartments");
+					return query.list();
+				}
+			});
 		} catch (Exception e) {
-			log.error("An error occurred while paging the apartment details from the database", e);
+			log.error("Khong tim thay can ho nao hot ca.", e);
 			return null;
 		}
 	}
-	
+
+	public List<Apartments> apartmentsByProvince(ApartmentModel apartmentModel) {
+		try {
+			return getHibernateTemplate().execute(new HibernateCallback<List<Apartments>>() {
+				public List<Apartments> doInHibernate(Session session) throws HibernateException {
+					Query<Apartments> query = session.createQuery("SELECT a FROM Apartments a JOIN a.project p WHERE p.province = :provinceId");
+					query.setParameter("provinceId", apartmentModel.getProvinceId());
+					return query.list();
+				}
+			});
+		} catch (Exception e) {
+			log.error("Khong tim thay can ho nao hot ca.", e);
+			return null;
+		}
+	}
+
 	public List<Apartments> findApartmentByProjectId(int project_id) {
 		log.info("Tim can ho theo projectId trong co so du lieu");
 		try {
@@ -71,5 +85,19 @@ public class ApartmentDAOImp extends GenericDAOImp<Apartments, Integer> implemen
 			return null;
 		}
 	}
-	
+
+	@Override
+	public Page<Apartments> paginate(Apartments apartments, Pageable pageable) {
+		log.info("Phan trang cac can ho trong co so du lieu");
+		try {
+
+			String sql = "FROM Apartments";
+			String countSql = "SELECT COUNT(*) FROM Apartments";
+			SearchQueryTemplate searchQueryTemplate = new SearchQueryTemplate(sql, countSql, pageable);
+			return paginate(searchQueryTemplate);
+		} catch (Exception e) {
+			log.error("An error occurred while paging the apartment details from the database", e);
+			return null;
+		}
+	}
 }

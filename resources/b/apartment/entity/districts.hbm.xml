@@ -11,8 +11,7 @@
             
     	<property name="name" column="name" type="string"></property>
     	<property name="code" column="code" type="string"></property>
-    	
-	    
+		<property name="provinceId" column="provinceId" type="int"></property>
 	</class>
 	
 	

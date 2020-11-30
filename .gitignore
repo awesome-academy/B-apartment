@@ -26,3 +26,4 @@ B-apartment.iml
 hs_err_pid*
 /build/
 /target/
+/WebContent/WEB-INF/datasource.properties

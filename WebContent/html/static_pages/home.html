@@ -1,114 +1,68 @@
 <!DOCTYPE html>
 <html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title th:text="#{home.title}">Home</title>
+	<title th:text="#{home.title}">Home</title>
 </head>
 <body>
-	<div class="home-page">
-		<div class="list-apartment-hot">
-			<h2>Bat dong san danh cho ban</h2>
-			<div class="container-box">
-				<div class="apartment-item">
-					<img src="https://file4.batdongsan.com.vn/crop/257x147/2020/09/11/20200911053757-fc0b_wm.jpg">
-					<div class="content">
-						<h2>Da nhan ban giao can ho Vinhome Grand Park Q9</h2>
-						<div class="price-area">
-							<span>2.78 ty</span>
-							<span>69.2 m</span>
-						</div>
-						<p class="location">Hoan Kiem</p>
-						<div class="created-like">
-							<span class="created">1 Tuan truoc</span>
-							<span class="like"><i class="fa fa-heart"></i></span>
-						</div>
-					</div>
-				</div>
-				
-				<div class="apartment-item">
-					<img src="https://file4.batdongsan.com.vn/crop/257x147/2020/05/25/20200525141418-1d6c_wm.jpg">
-					<div class="content">
-						<h2>Da nhan ban giao can ho Vinhome Grand Park Q9</h2>
-						<div class="price-area">
-							<span>2.78 ty</span>
-							<span>69.2 m</span>
-						</div>
-						<p class="location">Hoan Kiem</p>
-						<div class="created-like">
-							<span class="created">1 Tuan truoc</span>
-							<span class="like"><i class="fa fa-heart"></i></span>
-						</div>
-					</div>
-				</div>
-				
-				<div class="apartment-item">
-					<img src="https://file4.batdongsan.com.vn/crop/257x147/2020/10/09/20201009180357-aeda_wm.jpg">
-					<div class="content">
-						<h2>Da nhan ban giao can ho Vinhome Grand Park Q9</h2>
-						<div class="price-area">
-							<span>2.78 ty</span>
-							<span>69.2 m</span>
-						</div>
-						<p class="location">Hoan Kiem</p>
-						<div class="created-like">
-							<span class="created">1 Tuan truoc</span>
-							<span class="like"><i class="fa fa-heart"></i></span>
-						</div>
-					</div>
-				</div>
-				
-				<div class="apartment-item">
-					<img src="https://file4.batdongsan.com.vn/crop/257x147/2020/09/18/20200918104506-d962_wm.jpg">
-					<div class="content">
-						<h2>Da nhan ban giao can ho Vinhome Grand Park Q9</h2>
-						<div class="price-area">
-							<span>2.78 ty</span>
-							<span>69.2 m</span>
-						</div>
-						<p class="location">Hoan Kiem</p>
-						<div class="created-like">
-							<span class="created">1 Tuan truoc</span>
-							<span class="like"><i class="fa fa-heart"></i></span>
-						</div>
-					</div>
-				</div>
-				
-				<div class="apartment-item">
-					<img src="https://file4.batdongsan.com.vn/crop/257x147/2020/09/25/20200925143334-6861_wm.jpg">
-					<div class="content">
-						<h2>Da nhan ban giao can ho Vinhome Grand Park Q9</h2>
-						<div class="price-area">
-							<span>2.78 ty</span>
-							<span>69.2 m</span>
-						</div>
-						<p class="location">Hoan Kiem</p>
-						<div class="created-like">
-							<span class="created">1 Tuan truoc</span>
-							<span class="like"><i class="fa fa-heart"></i></span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="apartment-by-province">
-			<h2>Bat dong san theo dia diem</h2>
-			<div class="container-box">
+<div class="home-page">
+	<div class="slideshow-container">
+		<img src="https://masterisehomes.com/masteri-waterfront/storage/media/y343uyYjCKdaLSrx3GHGEsX2gmlasBhlV5sdNkjG.png" style="width:100%">
+	</div>
+	
+	<div class="list-apartment-hot">
+		<h2>Bat dong san danh cho ban</h2>
+		<div class="container-box">
+			<div class="apartment-item" th:each="apartment : ${apartments}" th:id="'apartment-'+${apartment.id}">
+				<img src="https://file4.batdongsan.com.vn/crop/257x147/2020/09/11/20200911053757-fc0b_wm.jpg">
 				<div class="content">
-					<div class="image-big">
+					<h2 th:text="${apartment.name}"></h2>
+					<div class="price-area">
+						<span th:text="${apartment.cost}">ty</span>
+						<span th:text="${apartment.area}">m</span>
 					</div>
-					<div class="images">
-						<div class="rows">
-							<div class="image1"></div>
-							<div class="image2"></div>
-						</div>
-						<div class="rows">
-							<div class="image3"></div>
-							<div class="image4"></div>
-						</div>
+					<p class="location">Hoan Kiem</p>
+					<div class="created-like">
+						<span class="created">1 Tuan truoc</span>
+						<span class="like"><i class="fa fa-heart"></i></span>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<div class="apartment-by-province">
+		<h2>Bat dong san theo dia diem</h2>
+		<div class="container-box">
+			<div class="content">
+				<a class="image-big" href="http://localhost:8080/B_apartment_war_exploded/apartments/province?province=1">
+					<span class="place-name">TP. Ho Chi Minh</span>
+					<span class="place-number">72444 tin dang</span>
+				</a>
+				<div class="images">
+					<div class="rows">
+						<a class="image1" href="http://localhost:8080/B_apartment_war_exploded/apartments/province?province=2">
+							<span class="place-name">Ha Noi</span>
+							<span class="place-number">31353 tin dang</span>
+						</a>
+						<a class="image2" href="http://localhost:8080/B_apartment_war_exploded/apartments/province?province=3">
+							<span class="place-name">Da Nang</span>
+							<span class="place-number">32142 tin dang</span>
+						</a>
+					</div>
+					<div class="rows">
+						<a class="image3" href="http://localhost:8080/B_apartment_war_exploded/apartments/province?province=4">
+							<span class="place-name">Binh Duong</span>
+							<span class="place-number">12234 tin dang</span>
+						</a>
+						<a class="image4" href="http://localhost:8080/B_apartment_war_exploded/apartments/province?province=5">
+							<span class="place-name">Dong Nai</span>
+							<span class="place-number">34212 tin dang</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 </html>

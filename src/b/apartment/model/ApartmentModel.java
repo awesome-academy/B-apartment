@@ -1,16 +1,15 @@
+
 package b.apartment.model;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.util.StringUtils;
-
-
 import b.apartment.entity.Apartments;
 import b.apartment.uploader.ImageUpload;
 import b.apartment.uploader.cloudinary.CloudinaryImageUpload;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 public class ApartmentModel extends BaseModel {
 	private Integer id;
@@ -30,15 +29,13 @@ public class ApartmentModel extends BaseModel {
 	@NotNull(message = "{apartment.validation.project.required}")
 	private Integer project_id;
 	private Integer user_id;
-	@NotEmpty(message = "{apartment.validation.description.required}")
 	private String description;
-	
-	
+
 	private MultipartFile picture;
 	private String image;
 
-	
-	
+
+
 	public String getImage() {
 		return image;
 	}
@@ -51,14 +48,11 @@ public class ApartmentModel extends BaseModel {
 	public void setPicture(MultipartFile picture) {
 		this.picture = picture;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
+	@NotNull(message = "{apartment.validation.description.required}")
+	@Size(max = 3000, message = "{apartment.validation.description.max}")
 	private ProjectsModel project;
+
+	private Integer provinceId;
 	
 	public ProjectsModel getProject() {
 		return project;
@@ -121,7 +115,15 @@ public class ApartmentModel extends BaseModel {
 	public void setProject_id(Integer project_id) {
 		this.project_id = project_id;
 	}
-	
+
+	public Integer getProvinceId() {
+		return provinceId;
+	}
+
+	public void setProvinceId(Integer provinceId) {
+		this.provinceId = provinceId;
+	}
+
 	public static ApartmentModel build(Apartments apartment) {
 		ApartmentModel apartmentModel = new ApartmentModel();
 		apartmentModel.setId(apartment.getId());
@@ -135,7 +137,7 @@ public class ApartmentModel extends BaseModel {
 		apartmentModel.setUser_id(apartment.getUser_id());
 		return apartmentModel;
 	}
-	
+
 	public boolean isAttached() {
 		return StringUtils.hasText(image);
 	}
@@ -151,5 +153,4 @@ public class ApartmentModel extends BaseModel {
 	public void setUpload(ImageUpload file) {
 		this.image = file.getStoredPath();
 	}
-
 }

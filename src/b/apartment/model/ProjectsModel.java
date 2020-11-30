@@ -7,7 +7,7 @@ public class ProjectsModel extends BaseModel {
 	private String province;
 	private String district;
 	private String wards;
-	private String desctiption;
+	private String description;
 	private String images;
 	
 	public Integer getId() {
@@ -46,11 +46,11 @@ public class ProjectsModel extends BaseModel {
 	public void setWards(String wards) {
 		this.wards = wards;
 	}
-	public String getDesctiption() {
-		return desctiption;
+	public String getDescription() {
+		return description;
 	}
-	public void setDesctiption(String desctiption) {
-		this.desctiption = desctiption;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getImages() {
 		return images;

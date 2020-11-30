@@ -1,11 +1,14 @@
 package b.apartment.controller;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import b.apartment.model.ApartmentModel;
+import b.apartment.service.ApartmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +34,9 @@ import b.apartment.interceptor.Flash;
 public class StaticPagesController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StaticPagesController.class);
-	
+	@Autowired
+	@Qualifier("apartmentService")
+	ApartmentService apartmentService;
 	
 	@Resource
 	private Flash flash;
@@ -54,13 +59,8 @@ public class StaticPagesController {
 	public String home(Locale locale, Model model,
 			@RequestParam(name = "page", required = false) Optional<Integer> page, Authentication authentication) {
 		logger.info("Home Page Requested, locale = " + locale);
-//		CustomUserDetails userDetails = (CustomUserDetails)authentication.getPrincipal();
-//		model.addAttribute("user", userService.findUser(userDetails.getUser().getId()));
-//		MicropostModel micropostModel = new MicropostModel();
-//		micropostModel.setUser_id(userDetails.getUser().getId());
-//		micropostModel.setPage(page.orElse(1));
-//		Page<MicropostModel> microposts = micropostService.paginate(micropostModel);
-//		model.addAttribute("microposts", microposts);
+		List<ApartmentModel> apartments = apartmentService.apartmentsHot();
+		model.addAttribute("apartments", apartments);
 		return "static_pages/home";
 	}
 

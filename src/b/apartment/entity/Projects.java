@@ -7,9 +7,9 @@ public class Projects implements Serializable {
 	private Integer id;
 	private String name;
 	private String location;
-	private String province;
-	private String district;
-	private String wards;
+	private Integer province;
+	private Integer district;
+	private Integer wards;
 	private String desctiption;
 	private String images;
 	
@@ -40,22 +40,22 @@ public class Projects implements Serializable {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getProvince() {
+	public Integer getProvince() {
 		return province;
 	}
-	public void setProvince(String province) {
+	public void setProvince(Integer province) {
 		this.province = province;
 	}
-	public String getDistrict() {
+	public Integer getDistrict() {
 		return district;
 	}
-	public void setDistrict(String district) {
+	public void setDistrict(Integer district) {
 		this.district = district;
 	}
-	public String getWards() {
+	public Integer getWards() {
 		return wards;
 	}
-	public void setWards(String wards) {
+	public void setWards(Integer wards) {
 		this.wards = wards;
 	}
 	public String getDesctiption() {

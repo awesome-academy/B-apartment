@@ -12,10 +12,27 @@ public class Apartments implements Serializable {
 	private Float area;
 	private Integer project_id;
 	private String image;
+	private String locationX;
+	private String locationY;
 
 	private Integer user_id;
 	private String description;
 	
+	
+	public String getLocationX() {
+		return locationX;
+	}
+	public void setLocationX(String locationX) {
+		this.locationX = locationX;
+	}
+	public String getLocationY() {
+		return locationY;
+	}
+	public void setLocationY(String locationY) {
+		this.locationY = locationY;
+	}
+	
+
 	private Projects project;
 	
 	public Projects getProject() {

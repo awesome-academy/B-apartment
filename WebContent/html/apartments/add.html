@@ -58,6 +58,14 @@
 	<span class="apartment">
         <img th:if="${apartment.attached}" th:src="${#viewSupport.getImageUrl(apartment.image)}" width="500" height="500"/>
     </span>
+    
+  <label th:for="${#ids.next('locationX')}" th:text="#{apartment.form.locationX}">LocationX</label>
+  <input type="text" th:field="*{locationX}" class="form-control" th:classappend="${#fields.hasErrors('locationX')}? 'fieldError'" />
+  <p th:if="${#fields.hasErrors('locationX')}" th:errors="*{locationX}" class="error" style="color:blue">Incorrect locationX</p>
+  
+  <label th:for="${#ids.next('locationY')}" th:text="#{apartment.form.locationY}">LocationY</label>
+  <input type="text" th:field="*{locationY}" class="form-control" th:classappend="${#fields.hasErrors('locationY')}? 'fieldError'" />
+  <p th:if="${#fields.hasErrors('locationY')}" th:errors="*{locationY}" class="error" style="color:blue">Incorrect locationY</p>
 
   <input type="submit" value="Post" th:attr="value=#{apartment.new.title}" class="btn btn-primary"/>
 </form>

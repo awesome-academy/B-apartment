@@ -20,8 +20,8 @@
     <bean id="projectService" class="b.apartment.service.imp.ProjectServiceImp">
 		<qualifier value="projectService"/>
     	<property name="projectDao" ref="projectDao" />
-    </bean>
-
+    </bean> 
+    
     <bean id="provinceService" class="b.apartment.service.imp.ProvinceServiceImp">
         <qualifier value="provinceService"/>
         <property name="provinceDao" ref="provinceDao" />
@@ -31,5 +31,9 @@
         <qualifier value="districtService"/>
         <property name="districtDao" ref="districtDao" />
     </bean>
-
+    
+    <bean id="favouriteService" class="b.apartment.service.imp.FavouriteServiceImp">
+		<qualifier value="favouriteService"/>
+    	<property name="favouriteDao" ref="favouriteDao" />
+    </bean> 
 </beans>

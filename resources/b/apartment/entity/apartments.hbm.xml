@@ -19,6 +19,8 @@
     	<property name="user_id" column="user_id" type="int"></property>
     	<property name="description" column="description" type="string" length="5000"></property>
     	<property name="image" column="image" type="string" length="256"></property>
+    	<property name="locationX" column="locationX" type="string"></property>
+    	<property name="locationY" column="locationY" type="string"></property>
     	
     	<many-to-one name="project" class="b.apartment.entity.Projects"
       		column="project_id" not-null="true" insert="false" update="false"/>

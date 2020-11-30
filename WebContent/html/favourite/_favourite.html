@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+		<form th:fragment="huy (favourite)" th:method="POST" th:action="@{/favourites}">
+			<input type="submit" value="Submit"
+				th:attr="value=#{session.favourite.submit}" class="btn btn-primary" />
+			<input type="hidden" th:name="apartmentId" th:value="${apartments.id}" />
+		</form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="#{favourite.index.title}">Favourites</title>
+</head>
+<body>
+	<h2 th:text="#{favourite.index.all}">All Favourites</h2>
+
+
+	<ul class="favourite">
+		<li th:each="favourite : ${favourites}" th:id="'apartments-'+${apartments.id}">
+			<a th:href="@{'/apartments/'+${apartments.id}}" th:text="${apartments.name}"></a> | 
+			
+		</li>
+	</ul>
+
+</body>
+</html>

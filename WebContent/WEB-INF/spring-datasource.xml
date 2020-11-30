@@ -31,9 +31,10 @@
          		<value>b/apartment/entity/users.hbm.xml</value>
          		<value>b/apartment/entity/apartments.hbm.xml</value>
          		<value>b/apartment/entity/projects.hbm.xml</value>
+         		<value>b/apartment/entity/favourite.hbm.xml</value>
 				<value>b/apartment/entity/provinces.hbm.xml</value>
 				<value>b/apartment/entity/districts.hbm.xml</value>
-			</list>
+         	</list>
       	</property>
       	<property name="hibernateProperties">
          	<props>
@@ -69,5 +70,6 @@
             class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
 
 </beans>

@@ -12,7 +12,8 @@
     	<property name="userId" column="userId" type="int"></property>
     	<property name="apartmentId" column="apartmentId" type="int"></property>
     	
-	    
+	    <many-to-one name="apartment" class="b.apartment.entity.Apartments"
+      		column="apartmentId" not-null="true" insert="false" update="false"/>
 	</class>
 	
 	

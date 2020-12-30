@@ -6,8 +6,7 @@ public class Favourite implements Serializable {
 	private Integer id;
 	private Integer userId;
 	private Integer apartmentId;
-	
-	
+	private Apartments apartment;
 	
 	public Integer getId() {
 		return id;
@@ -27,7 +26,11 @@ public class Favourite implements Serializable {
 	public void setApartmentId(Integer apartmentId) {
 		this.apartmentId = apartmentId;
 	}
+	public Apartments getApartment() {
+		return apartment;
+	}
+	public void setApartment(Apartments apartment) {
+		this.apartment = apartment;
+	}
 	
-	
-
 }

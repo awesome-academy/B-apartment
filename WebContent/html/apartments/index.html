@@ -7,7 +7,7 @@
   <h1 th:text="#{apartment.index.all}">All Apartments</h1>
   
   <ul class="apartments">
-    <li th:each="apartment : ${apartments}" th:id="'apartment_'+${apartment.id}" th:padding-left="30px">
+    <li th:each="apartment : ${apartments}" th:id="'apartment_'+${apartment.id}" th:padding-left="300px">
       <a th:href="@{'/apartments/'+${apartment.id}}" th:text="${apartment.name}"></a>
     </li>
   </ul>

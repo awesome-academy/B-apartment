@@ -65,7 +65,6 @@ public class ApartmentModel extends BaseModel {
 		this.picture = picture;
 	}
 	@NotNull(message = "{apartment.validation.description.required}")
-	@Size(max = 3000, message = "{apartment.validation.description.max}")
 	private ProjectsModel project;
 
 	private Integer provinceId;

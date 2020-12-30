@@ -18,6 +18,7 @@ import org.springframework.util.StringUtils;
 
 import b.apartment.dao.FavouriteDAO;
 import b.apartment.entity.Favourite;
+import b.apartment.model.ApartmentModel;
 import b.apartment.model.FavouriteModel;
 import b.apartment.service.FavouriteService;
 
@@ -39,11 +40,20 @@ public class FavouriteServiceImp implements FavouriteService {
 	
 	
 	@Transactional
-	public void favourite(Integer userId, Integer apartmentId) throws Exception {
-		Favourite favourite = new Favourite();
-		favourite.setUserId(userId);
-		favourite.setApartmentId(apartmentId);
-		favouriteDAO.makePersistent(favourite);
+	public FavouriteModel favourite(Integer userId, Integer apartmentId) throws Exception {
+		try {
+			Favourite condition = new Favourite();
+			condition.setUserId(userId);
+			condition.setApartmentId(apartmentId);
+			Favourite favourite = favouriteDAO.makePersistent(condition);
+			FavouriteModel favouriteModel = new FavouriteModel();
+			BeanUtils.copyProperties(favourite, favouriteModel);
+			return favouriteModel;
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw e;
+		}
+		
 	}
 	
 	
@@ -53,30 +63,30 @@ public class FavouriteServiceImp implements FavouriteService {
 		return favourite;
 		}
 	
-	@Transactional
-	public Favourite findFavourite(Integer userId, Integer apartmentId)  {
-		try {
-			log.info("Checking favourite in the database");
-			Favourite favourite = favouriteDAO.findFavourite(userId, apartmentId);
-			favouriteDAO.makePersistent(favourite);
-			return favourite;
-		}
-		catch (Exception e) {
-			log.error("Khong co favourite can tim trong Data Base", e);
-			return null;
-		}
-	}
 	
-	public List<FavouriteModel> findAll() throws Exception {
-		log.info("Fetching all favourites in the database");
-		List<FavouriteModel> favouriteModelList = new ArrayList<FavouriteModel>();
-			List<Favourite> favouriteList = favouriteDAO.findAll();
-			for (Favourite favourite : favouriteList) {
+	@Transactional(readOnly = true)
+	public List<FavouriteModel> findFavouriteByUserId(Integer userId) throws Exception {
+		try {
+			log.info("Fetching favourite in the database");
+			List<Favourite> favourites = favouriteDAO.findFavouriteByUserID(userId);
+			List<FavouriteModel> favouriteModelList = new ArrayList<FavouriteModel>();
+			for(Favourite favourite : favourites)
+			{
 				FavouriteModel favouriteModel = new FavouriteModel();
 				BeanUtils.copyProperties(favourite, favouriteModel);
+				
+				ApartmentModel apartmentModel = new ApartmentModel();
+				BeanUtils.copyProperties(favourite.getApartment(), apartmentModel);
+				
+				favouriteModel.setApartmentModel(apartmentModel);
 				favouriteModelList.add(favouriteModel);
 			}
 			return favouriteModelList;
+		}
+		catch (Exception e) {
+			log.error("Khong co favourite can tim trong Data Base", e);
+			throw e;
+		}
 	}
 }
 

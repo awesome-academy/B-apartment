@@ -5,8 +5,8 @@ import b.apartment.model.BaseModel;
 public class FavouriteModel extends BaseModel {
 	private Integer id;
 	private Integer userId;
-	private Integer ApartmentId;
-	
+	private Integer apartmentId;
+	private ApartmentModel apartmentModel;
 	
 	public Integer getId() {
 		return id;
@@ -21,12 +21,16 @@ public class FavouriteModel extends BaseModel {
 		this.userId = userId;
 	}
 	public Integer getApartmentId() {
-		return ApartmentId;
+		return apartmentId;
 	}
 	public void setApartmentId(Integer apartmentId) {
-		ApartmentId = apartmentId;
+		this.apartmentId = apartmentId;
+	}
+	public ApartmentModel getApartmentModel() {
+		return apartmentModel;
+	}
+	public void setApartmentModel(ApartmentModel apartmentModel) {
+		this.apartmentModel = apartmentModel;
 	}
 	
-	
-
 }

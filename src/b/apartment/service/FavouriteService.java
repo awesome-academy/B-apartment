@@ -8,12 +8,10 @@ import b.apartment.model.FavouriteModel;
 
 public interface FavouriteService  {
 
-	public void favourite(Integer userId, Integer apartmentId) throws Exception;
+	public FavouriteModel favourite(Integer userId, Integer apartmentId) throws Exception;
 	
 	public boolean checkFavourite(Integer userId, Integer apartmentId) throws Exception;
 	
-	public Favourite findFavourite(Integer userId, Integer apartmentId) throws Exception;
-	
-	public List<FavouriteModel> findAll() throws Exception;
+	public List<FavouriteModel> findFavouriteByUserId(Integer userId) throws Exception;
 	
 }

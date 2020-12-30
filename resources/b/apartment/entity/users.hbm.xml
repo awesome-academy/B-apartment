@@ -17,6 +17,7 @@
     	<property name="age" column="age" type="int"></property>
     	<property name="password" column="password" type="string"></property>
     	
+    	
 	</class>
 	
 	

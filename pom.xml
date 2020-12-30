@@ -225,6 +225,12 @@
 		    <artifactId>js-cookie</artifactId>
 		    <version>2.2.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars/jquery-ui -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>jquery-ui</artifactId>
+		    <version>1.12.1</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/net.jcip/jcip-annotations -->
 		<dependency>
 		    <groupId>net.jcip</groupId>

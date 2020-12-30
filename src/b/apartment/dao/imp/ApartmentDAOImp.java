@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import b.apartment.dao.ApartmentDAO;
 import b.apartment.entity.Apartments;
@@ -90,13 +91,29 @@ public class ApartmentDAOImp extends GenericDAOImp<Apartments, Integer> implemen
 	public Page<Apartments> paginate(Apartments apartments, Pageable pageable) {
 		log.info("Phan trang cac can ho trong co so du lieu");
 		try {
-
 			String sql = "FROM Apartments";
 			String countSql = "SELECT COUNT(*) FROM Apartments";
 			SearchQueryTemplate searchQueryTemplate = new SearchQueryTemplate(sql, countSql, pageable);
 			return paginate(searchQueryTemplate);
 		} catch (Exception e) {
 			log.error("An error occurred while paging the apartment details from the database", e);
+			return null;
+		}
+	}
+	
+	public List<Apartments> searchApartments(Apartments searchA) {
+		log.info("Tim kiem can ho theo tu khoa");
+		try {
+			return getHibernateTemplate().execute(new HibernateCallback<List<Apartments>>() {
+				public List<Apartments> doInHibernate(Session session) throws HibernateException {
+					Query<Apartments> query = session.createQuery("FROM Apartments WHERE LOWER(name) LIKE :search");
+					query.setParameter("search", "%"+ searchA.getName().toLowerCase() +"%");
+					return query.list();
+				}
+			});
+		}
+		catch (Exception e) {
+			log.error("Loi khi tim kiem can ho theo tu khoa", e);
 			return null;
 		}
 	}

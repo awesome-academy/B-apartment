@@ -259,7 +259,7 @@ public class ApartmentServiceImp implements ApartmentService {
 		return apartmentModelList;
 	}
 
-	public List<ApartmentModel>  apartmentsByProvince(ApartmentModel apartmentModel) {
+	public List<ApartmentModel> apartmentsByProvince(ApartmentModel apartmentModel) {
 		List<ApartmentModel> apartmentModelList = new ArrayList<ApartmentModel>();
 		try {
 			List<Apartments> apartmentList = apartmentDAO.apartmentsByProvince(apartmentModel);
@@ -272,6 +272,25 @@ public class ApartmentServiceImp implements ApartmentService {
 			log.error("An error occurred while fetching all apartments from the database", e);
 		}
 		return apartmentModelList;
+	}
+	
+	public List<ApartmentModel> searchApartments(ApartmentModel search) {
+		log.info("Tim can ho theo tu khoa nhap vao");
+		List<ApartmentModel> apartmentModelList = new ArrayList<ApartmentModel>();
+		try {
+			Apartments condition = new Apartments();
+			condition.setName(search.getName());
+			List<Apartments> apartmentList = apartmentDAO.searchApartments(condition);
+			for (Apartments apartment : apartmentList) {
+				ApartmentModel apartmentModel = new ApartmentModel();
+				BeanUtils.copyProperties(apartment, apartmentModel);
+				apartmentModelList.add(apartmentModel);
+			}
+			return apartmentModelList;
+		} catch (Exception e) {
+			log.error("Da xay ra loi khi tim kiem can ho theo tu khoa nhao vao", e);
+			return null;
+		}
 	}
 }
 

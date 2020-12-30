@@ -8,11 +8,9 @@
 
 
 	<ul class="favourite">
-		<li th:each="favourite : ${favourites}" th:id="'apartments-'+${apartments.id}">
-			<a th:href="@{'/apartments/'+${apartments.id}}" th:text="${apartments.name}"></a> | 
-			
-		</li>
+		<li th:each="favourite : ${favourites}" th:text="${favourite.apartmentModel.name}"></li>
 	</ul>
+
 
 </body>
 </html>

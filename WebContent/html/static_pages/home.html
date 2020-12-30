@@ -9,6 +9,46 @@
 		<img src="https://masterisehomes.com/masteri-waterfront/storage/media/y343uyYjCKdaLSrx3GHGEsX2gmlasBhlV5sdNkjG.png" style="width:100%">
 	</div>
 	
+	<br><br><br>
+	<div class="ui-widget">
+		<label for="search">Search Apartment:</label>
+		<input type="text" id="search" name="search" size = "1">
+	</div>
+	<br><br>
+	
+	<script type="text/javascript">
+    $(document).ready(function() {
+        var url = '[[@{/search}]]';
+        $("#search").autocomplete({
+            source : function(request, response) {
+                $.ajax(url, {
+                    type: 'GET',
+                    dataType : "json",
+                    data : {
+                        key : $( "#search" ).val()
+                    },
+                    success : function(data) {
+                        console.log(data);
+                        response($.map(data, function(apartments) {
+                            return { value: apartments.name, data: apartments.id };
+                        }));
+                    }
+                });
+            },
+            minLength: 2,
+            select : function(e, ui) {
+            	var path = '[[@{/apartments/}]]' + ui.item.data;
+            	alert(path);
+            }
+        })
+        .autocomplete( "instance" )._renderItem = function( ul, item ) {
+            return $( "<li>" )
+              .append( "<a href='[[@{/apartments/}]]" + item.data + "'>" + item.value + "</a>" )
+              .appendTo( ul );
+         };
+    });
+	</script>
+	
 	<div class="list-apartment-hot">
 		<h2>Bat dong san danh cho ban</h2>
 		<div class="container-box">

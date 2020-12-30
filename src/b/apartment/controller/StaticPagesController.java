@@ -7,27 +7,26 @@ import java.util.Optional;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import b.apartment.model.ApartmentModel;
-import b.apartment.service.ApartmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import b.apartment.interceptor.Flash;
+import b.apartment.model.ApartmentModel;
+import b.apartment.service.ApartmentService;
 
 
 @Controller
@@ -81,20 +80,25 @@ public class StaticPagesController {
 		logger.info("Home Page Requested, locale = " + locale);
 		return "static_pages/contact";
 	}
-//	
-//	@PostMapping(value = "/contacts")
-//	public String create(@ModelAttribute("contact") ContactModel contactModel, BindingResult bindingResult,
-//			Model model, final RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
-//		
-//		ContactModel contact = contactService.addContact(contactModel);
-//		// Add message to flash scope
-//		return "static_pages/contact";
-//	}
 	
-
 	@RequestMapping(value = { "/access_denied" }, method = RequestMethod.GET)
 	public String accessDenied() {
 		logger.info("Access denied");
 		return "access_denied";
+	}
+	
+	@GetMapping(value = "/search", produces = { MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+            MediaType.APPLICATION_JSON_VALUE })
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+	public List<ApartmentModel> search(Locale locale, Model model, Authentication authentication,
+			@RequestParam String key)
+	{
+		ApartmentModel apartmentModel = new ApartmentModel();
+		apartmentModel.setName(key);
+		
+		List<ApartmentModel> apartmentModelList = apartmentService.searchApartments(apartmentModel);
+        model.addAttribute("apartmentModel", apartmentModelList);
+        return apartmentModelList;
 	}
 }

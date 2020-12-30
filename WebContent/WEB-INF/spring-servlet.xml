@@ -192,6 +192,7 @@
   		<property name="templateEngine" ref="templateEngine" />
   		<!-- NOTE 'order' and 'viewNames' are optional -->
   		<property name="contentType" value="text/html;charset=UTF-8" />
+  		<property name="forceContentType" value="true"></property>
   		<property name="order" value="1" />
   		<!-- <property name="viewNames" value="*.html,*.xhtml" /> -->
 	</bean>

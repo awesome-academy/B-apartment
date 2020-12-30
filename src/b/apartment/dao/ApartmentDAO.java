@@ -20,4 +20,6 @@ public interface ApartmentDAO extends GenericDAO<Apartments, Integer> {
 	public List<Apartments> apartmentsHot();
 
 	public List<Apartments> apartmentsByProvince(ApartmentModel apartmentModel);
+	
+	public List<Apartments> searchApartments(Apartments searchA);
 }

@@ -40,20 +40,18 @@ public class FavouriteDAOImp extends GenericDAOImp<Favourite, Integer> implement
 			return result > 0;
 		}
 	
-	public Favourite findFavourite(Integer userId, Integer apartmentId) {
-		log.info("Finding favourite in the database");
-		return getHibernateTemplate().execute(new HibernateCallback<Favourite>() {
-			 public Favourite doInHibernate(Session session) throws HibernateException {
-					String sql = "FROM Favourite WHERE userId = :userId AND apartmentId = :apartmentId";
-		            Query<Favourite> query = session.createQuery(sql, Favourite.class);
-					query.setParameter("userId", userId);
-					query.setParameter("apartmentId", apartmentId);
-					return query.uniqueResult();
-				}
-			});
+	public List<Favourite> findFavouriteByUserID(Integer userId) {
+		try {
+			return getHibernateTemplate().execute(new HibernateCallback<List<Favourite>>() {
+				 public List<Favourite> doInHibernate(Session session) throws HibernateException {
+						String sql = "FROM Favourite WHERE userId = :userId";
+			            Query<Favourite> query = session.createQuery(sql, Favourite.class);
+						query.setParameter("userId", userId);
+						return query.getResultList();
 		}
-
-
-
-	
+			});
+		} catch (Exception e) {
+			return null;
+		}
+	} 
 }

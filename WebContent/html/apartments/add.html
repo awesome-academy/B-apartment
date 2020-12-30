@@ -43,21 +43,21 @@
   </select>
   <p th:if="${#fields.hasErrors('project_id')}" th:errors="*{project_id}" class="error" style="color:blue">Incorrect projectId</p>
 	
-	<label th:for="${#ids.next('description')}" th:text="#{apartment.form.description}">description</label>
-		<textarea id="editor1" th:field="*{description}" cols="80" rows="10"></textarea>
+  <label th:for="${#ids.next('description')}" th:text="#{apartment.form.description}">description</label>
+	<textarea id="editor1" th:field="*{description}" cols="80" rows="10"></textarea>
        <script>
  
            CKEDITOR.replace( 'editor1' );
  
-       </script> 
+       </script>
        
-    <div class="field">
-	  <input type="file" th:field="*{picture}" id="file"/>
-	</div>
+  <div class="field">
+	 <input type="file" th:field="*{picture}" id="file"/>
+  </div>
 	
-	<span class="apartment">
-        <img th:if="${apartment.attached}" th:src="${#viewSupport.getImageUrl(apartment.image)}" width="500" height="500"/>
-    </span>
+  <span class="apartment">
+      <img th:if="${apartment.attached}" th:src="${#viewSupport.getImageUrl(apartment.image)}" width="500" height="500"/>
+  </span>
     
   <label th:for="${#ids.next('locationX')}" th:text="#{apartment.form.locationX}">LocationX</label>
   <input type="text" th:field="*{locationX}" class="form-control" th:classappend="${#fields.hasErrors('locationX')}? 'fieldError'" />

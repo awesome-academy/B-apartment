@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import b.apartment.entity.Apartments;
 import b.apartment.model.ApartmentModel;
 
 public interface ApartmentService {
@@ -19,4 +20,6 @@ public interface ApartmentService {
 	public List<ApartmentModel> apartmentsHot();
 
 	public List<ApartmentModel> apartmentsByProvince(ApartmentModel apartmentModel);
+	
+	public List<ApartmentModel> searchApartments(ApartmentModel search);
 }

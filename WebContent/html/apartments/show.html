@@ -52,6 +52,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div id="googleMap" style="display: block; height: 500px; width: 100%;"></div>
 	<script>
 		function myMap() {
@@ -67,4 +68,32 @@
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4cXd5iCKHbZp9um01ileGFg1oTE6Pq6Q&callback=myMap"></script>
 	
+	<th:block th:if="${favourited == false}">
+	<form th:method="POST" th:action="@{/favourites}" id="_favourite_form">
+	    <input type="hidden" th:name="apartmentId" th:value="${apartment.id}">
+		<input type="submit" th:attr="value=#{apartment.favourite}" width="200" height="100" />
+	</form>
+	</th:block>
+	
+	<div id="_favourited" th:attr="class=${favourited == true ? 'show' : 'hide'}">
+		<button name="button" value="disabled" type="button">Favourited</button>
+	</div>
+  
+  	<script type="text/javascript">
+  	$(document).ready(function() {
+  		$('#_favourite_form').submit(function(event) {
+  			event.preventDefault();
+  			event.stopPropagation();
+  			var url = '[[@{/favourites}]]';
+  			var apartmentId = $(this).find('[name="apartmentId"]').val();
+  			$.post(url, {apartmentId: apartmentId},
+  			    function(data) {
+  	               $('#_favourited').removeClass('hide');
+  	               $('#_favourited').addClass('show');
+  	               $('#_favourite_form').remove();
+  	            }, 'json'
+  			);
+  		});
+  	});
+  	</script>
 </body>

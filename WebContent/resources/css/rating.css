@@ -1,0 +1,25 @@
+div.rating {}
+ 
+label.full {
+    font-size: 24px;
+    color: #f0f1f4;
+    cursor: pointer;
+    line-height: 1;
+    transition: all 0.1s ease;
+}
+
+label.full.vote-hover {
+    color: #96e2fb;
+}
+
+label.full:active {
+    color: #56CCF2;
+}
+
+label.full.vote-active {
+    color: #0faef1;
+}
+
+.blue {
+    color: #0faef1;
+}

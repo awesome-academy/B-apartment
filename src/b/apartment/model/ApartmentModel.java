@@ -30,6 +30,7 @@ public class ApartmentModel extends BaseModel {
 	private Integer project_id;
 	private Integer user_id;
 	private String description;
+	private Integer rating;
 
 	private MultipartFile picture;
 	private String image;
@@ -173,6 +174,12 @@ public class ApartmentModel extends BaseModel {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Integer getRating() {
+		return rating;
+	}
+	public void setRating(Integer rating) {
+		this.rating = rating;
 	}
 	
 	

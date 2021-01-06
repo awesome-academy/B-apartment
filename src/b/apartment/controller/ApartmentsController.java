@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import b.apartment.model.ApartmentModel;
 import b.apartment.service.ProvinceService;
+import b.apartment.service.RatingService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import b.apartment.interceptor.Flash;
 import b.apartment.model.ProjectsModel;
+import b.apartment.model.RatingModel;
 import b.apartment.service.ApartmentService;
 import b.apartment.service.FavouriteService;
 import b.apartment.service.ProjectService;
@@ -65,6 +68,10 @@ public class ApartmentsController {
 	@Autowired
 	@Qualifier("favouriteService")
 	FavouriteService favouriteService;
+	
+	@Autowired
+	@Qualifier("ratingService")
+	RatingService ratingService;
 	
 	@Resource
 	Flash flash;
@@ -135,8 +142,10 @@ public class ApartmentsController {
 			Authentication authentication) throws Exception {
 		model.addAttribute("apartment", apartmentService.findApartment(id));
 		UserModel userModel = (UserModel) request.getSession().getAttribute("user");
+		
 		boolean favourited = favouriteService.checkFavourite(userModel.getId(), id);
 		model.addAttribute("favourited", favourited);
+		
 		return "apartments/show";
 	}
 }

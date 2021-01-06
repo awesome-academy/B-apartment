@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head></head>
+<body>
+	<th:block th:fragment="copy (apartment)" style="display: flex">
+		<form th:action="@{'/rating'}" th:method="POST" th:id="rating" >
+			<input type="hidden" th:name="apartmentId" th:value="${apartment.id}">
+			<input type="radio" name="star" value="1"/>
+			<input type="radio" name="star" value="2"/>
+			<input type="radio" name="star" value="3"/>
+			<input type="radio" name="star" value="4"/>
+			<input type="radio" name="star" value="5"/>
+			<input type="submit" value="Rating" class="btn btn-primary"/>  
+		</form>
+		
+		<script>
+		      $('#rating').submit(function(event) {
+			  event.preventDefault();
+			  event.stopPropagation();
+			  var apartmentId = $(this).find('[name="apartmentId"]').val();
+			  var star = $(this).find('input[type="radio"]:checked').val();
+			  $.ajax({
+				type : 'POST',
+				url : '[[@{/rating}]]',
+			  	data : {
+			  		apartmentId : apartmentId,
+			  		star : star,
+			  	},
+			  	dataType : 'json',
+				success : function(data) {
+					alert('Cam on ban da danh gia can ho nay!'); 
+				}
+		      });
+		    });
+		</script>
+	</th:block>
+</body>
+</html>

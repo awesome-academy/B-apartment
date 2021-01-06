@@ -34,6 +34,7 @@
          		<value>b/apartment/entity/favourite.hbm.xml</value>
 				<value>b/apartment/entity/provinces.hbm.xml</value>
 				<value>b/apartment/entity/districts.hbm.xml</value>
+				<value>b/apartment/entity/rating.hbm.xml</value>
          	</list>
       	</property>
       	<property name="hibernateProperties">

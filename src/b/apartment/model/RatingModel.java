@@ -8,6 +8,7 @@ public class RatingModel extends BaseModel {
 	private Integer userId;
 	private Integer scores;
 	private ApartmentModel apartmentModel;
+	private UserModel userModel;
 	
 	public Integer getId() {
 		return id;
@@ -38,5 +39,11 @@ public class RatingModel extends BaseModel {
 	}
 	public void setApartmentModel(ApartmentModel apartmentModel) {
 		this.apartmentModel = apartmentModel;
+	}
+	public UserModel getUserModel() {
+		return userModel;
+	}
+	public void setUserModel(UserModel userModel) {
+		this.userModel = userModel;
 	}
 }

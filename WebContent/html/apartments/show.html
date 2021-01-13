@@ -99,4 +99,14 @@
   	</script>
   	
   	<div th:replace="~{rating/_rating :: copy(${apartment})}"></div>
+  	
+  	<li>
+		<strong><span class="sp1">So nguoi da danh gia: </span></strong>
+		<span th:text="${apartment.apartmentRating}"></span>
+	</li>
+	
+	<li>
+		<strong><span class="sp1">Diem trung binh: </span></strong>
+		<span th:text="${apartment.averageScore}"></span>
+	</li>
 </body>

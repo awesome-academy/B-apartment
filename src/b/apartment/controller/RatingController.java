@@ -22,6 +22,7 @@ import b.apartment.model.ApartmentModel;
 import b.apartment.model.FavouriteModel;
 import b.apartment.model.RatingModel;
 import b.apartment.model.UserModel;
+import b.apartment.service.ApartmentService;
 import b.apartment.service.RatingService;
 
 @Controller
@@ -32,6 +33,10 @@ public class RatingController {
 	@Autowired
 	@Qualifier("ratingService")
 	RatingService ratingService;
+	
+	@Autowired
+	@Qualifier("apartmentService")
+	ApartmentService apartmentService;
 	
 	@PostMapping(value = "/rating", produces = { MediaType.APPLICATION_FORM_URLENCODED_VALUE,
             MediaType.APPLICATION_JSON_VALUE })

@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import b.apartment.model.ApartmentModel;
+import b.apartment.model.FavouriteModel;
 import b.apartment.service.ProvinceService;
 import b.apartment.service.RatingService;
 
@@ -140,11 +141,20 @@ public class ApartmentsController {
 	public String show(@PathVariable Integer id, Model model, 
 			HttpServletRequest request,
 			Authentication authentication) throws Exception {
-		model.addAttribute("apartment", apartmentService.findApartment(id));
+		ApartmentModel apartmentModel = apartmentService.findApartment(id);
+		
+		apartmentModel.setApartmentRating(ratingService.countUserByApartmentId(apartmentModel));
+		apartmentModel.setAverageScore(ratingService.avgScore(apartmentModel));
+		model.addAttribute("apartment", apartmentModel);
+		
 		UserModel userModel = (UserModel) request.getSession().getAttribute("user");
 		
 		boolean favourited = favouriteService.checkFavourite(userModel.getId(), id);
 		model.addAttribute("favourited", favourited);
+		
+		boolean rated = ratingService.checkRating(userModel.getId(), id);
+		model.addAttribute("rated", rated);
+		System.out.println("123" + rated);
 		
 		return "apartments/show";
 	}

@@ -42,6 +42,12 @@
 		<property name="hibernateTemplate"
 				  ref="hibernateTemplateBean" />
 	</bean>
+	
+	<bean id="ratingDao"
+		  class="b.apartment.dao.imp.RatingDAOImp">
+		<property name="hibernateTemplate"
+				  ref="hibernateTemplateBean" />
+	</bean>
 
 
 </beans>

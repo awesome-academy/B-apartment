@@ -36,4 +36,9 @@
 		<qualifier value="favouriteService"/>
     	<property name="favouriteDao" ref="favouriteDao" />
     </bean> 
+    
+    <bean id="ratingService" class="b.apartment.service.imp.RatingServiceImp">
+		<qualifier value="ratingService"/>
+    	<property name="ratingDao" ref="ratingDao" />
+    </bean> 
 </beans>

@@ -30,6 +30,9 @@ public class ApartmentModel extends BaseModel {
 	private Integer project_id;
 	private Integer user_id;
 	private String description;
+	private Integer rating;
+	private Long apartmentRating;
+	private Double averageScore;
 
 	private MultipartFile picture;
 	private String image;
@@ -174,6 +177,25 @@ public class ApartmentModel extends BaseModel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public Integer getRating() {
+		return rating;
+	}
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+	public Long getApartmentRating() {
+		return apartmentRating;
+	}
+	public void setApartmentRating(Long apartmentRating) {
+		this.apartmentRating = apartmentRating;
+	}
+	public Double getAverageScore() {
+		return averageScore;
+	}
+	public void setAverageScore(Double averageScore) {
+		this.averageScore = averageScore;
+	}
+	
 	
 	
 }

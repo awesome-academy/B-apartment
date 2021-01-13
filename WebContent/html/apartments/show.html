@@ -55,16 +55,17 @@
 	
 	<div id="googleMap" style="display: block; height: 500px; width: 100%;"></div>
 	<script>
-		function myMap() {
+		function myMap() 
+		{
 			var locationX = [[${apartment.locationX}]];
 			var locationY = [[${apartment.locationY}]];
-			var mapProp= {
+			var mapProp= 
+			{
 			  center:new google.maps.LatLng(locationX, locationY),
 			  zoom:13,
 			};
 			var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-			}
-			
+		}	
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4cXd5iCKHbZp9um01ileGFg1oTE6Pq6Q&callback=myMap"></script>
 	
@@ -96,4 +97,16 @@
   		});
   	});
   	</script>
+  	
+  	<div th:replace="~{rating/_rating :: copy(${apartment})}"></div>
+  	
+  	<li>
+		<strong><span class="sp1">So nguoi da danh gia: </span></strong>
+		<span th:text="${apartment.apartmentRating}"></span>
+	</li>
+	
+	<li>
+		<strong><span class="sp1">Diem trung binh: </span></strong>
+		<span th:text="${apartment.averageScore}"></span>
+	</li>
 </body>

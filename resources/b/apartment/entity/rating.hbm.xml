@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+  
+<hibernate-mapping>  
+	<class name="b.apartment.entity.Rating" table="rating">  
+    	<id name="id" column="id" type="int"> 
+     		<generator class="native"></generator>  
+    	</id>  
+            
+    	<property name="apartmentId" column="apartmentId" type="int"></property>
+    	<property name="userId" column="userId" type="int"></property>
+    	<property name="scores" column="scores" type="int"></property>
+    	
+	    <many-to-one name="apartment" class="b.apartment.entity.Apartments"
+      		column="apartmentId" not-null="true" insert="false" update="false"/>
+	</class>
+</hibernate-mapping>  

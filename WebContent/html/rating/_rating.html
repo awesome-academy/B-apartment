@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head></head>
+<body>
+	<th:block th:fragment="copy (apartment)">
+		<form th:action="@{'/rating'}" th:method="POST" th:id="rating" th:if="${rated == false}">
+			<label for="Danh gia can ho">Danh gia can ho</label>
+			<input type="hidden" th:name="apartmentId" th:value="${apartment.id}">
+			<input type="radio" name="star" value="1" id="star1"/>
+			<input type="radio" name="star" value="2" id="star2"/>
+			<input type="radio" name="star" value="3" id="star3"/>
+			<input type="radio" name="star" value="4" id="star4"/>
+			<input type="radio" name="star" value="5" id="star5"/>
+			<input type="submit" value="Rating" class="btn btn-primary"/>  
+		</form>
+		
+		<div id="_rated" th:attr="class=${rated == true ? 'show' : 'hide'}">
+			<p>Ban da danh gia can ho nay</p>
+		</div>
+		
+		<script>
+		      $('#star1').change(function(event) {
+			  event.preventDefault();
+			  event.stopPropagation();
+			  var apartmentId = $("#rating").find('[name="apartmentId"]').val();
+			  var star = $(this).val();
+			  $.ajax({
+				type : 'POST',
+				url : '[[@{/rating}]]',
+			  	data : {
+			  		apartmentId : apartmentId,
+			  		star : star,
+			  	},
+			  	dataType : 'json',
+			  	success : function(data) {
+					alert('Cam on ban da danh gia!');
+					$('#_rated').removeClass('hide');
+	  	            $('#_rated').addClass('show');
+	  	            $('#rating').remove();
+				}
+		      });
+		    });
+		      
+		    $('#star2').change(function(event) {
+				event.preventDefault();
+				event.stopPropagation();
+				var apartmentId = $("#rating").find('[name="apartmentId"]').val();
+				var star = $(this).val();
+				$.ajax({
+					type : 'POST',
+					url : '[[@{/rating}]]',
+				  	data : {
+				  		apartmentId : apartmentId,
+				  		star : star,
+				  	},
+				  	dataType : 'json',
+				  	success : function(data) {
+						alert('Cam on ban da danh gia!');
+						$('#_rated').removeClass('hide');
+		  	            $('#_rated').addClass('show');
+		  	            $('#rating').remove();
+					}
+			      });
+			    });
+		      
+		    $('#star3').change(function(event) {
+				event.preventDefault();
+				event.stopPropagation();
+				var apartmentId = $("#rating").find('[name="apartmentId"]').val();
+				var star = $(this).val();
+				$.ajax({
+					type : 'POST',
+					url : '[[@{/rating}]]',
+				  	data : {
+				  		apartmentId : apartmentId,
+				  		star : star,
+				  	},
+				  	dataType : 'json',
+				  	success : function(data) {
+						alert('Cam on ban da danh gia!');
+						$('#_rated').removeClass('hide');
+		  	            $('#_rated').addClass('show');
+		  	            $('#rating').remove();
+					}
+			      });
+			    });
+		    
+		    $('#star4').change(function(event) {
+				event.preventDefault();
+				event.stopPropagation();
+				var apartmentId = $("#rating").find('[name="apartmentId"]').val();
+				var star = $(this).val();
+				$.ajax({
+					type : 'POST',
+					url : '[[@{/rating}]]',
+				  	data : {
+				  		apartmentId : apartmentId,
+				  		star : star,
+				  	},
+				  	dataType : 'json',
+				  	success : function(data) {
+						alert('Cam on ban da danh gia!');
+						$('#_rated').removeClass('hide');
+		  	            $('#_rated').addClass('show');
+		  	            $('#rating').remove();
+					}
+			      });
+			    });
+		    
+		    $('#star5').change(function(event) {
+				event.preventDefault();
+				event.stopPropagation();
+				var apartmentId = $("#rating").find('[name="apartmentId"]').val();
+				var star = $(this).val();
+				$.ajax({
+					type : 'POST',
+					url : '[[@{/rating}]]',
+				  	data : {
+				  		apartmentId : apartmentId,
+				  		star : star,
+				  	},
+				  	dataType : 'json',
+				  	success : function(data) {
+						alert('Cam on ban da danh gia!');
+						$('#_rated').removeClass('hide');
+		  	            $('#_rated').addClass('show');
+		  	            $('#rating').remove();
+					}
+			      });
+			    });
+			
+		</script>
+	</th:block>
+</body>
+</html>
